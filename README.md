@@ -3,4 +3,5 @@ A python script for allow users to install all the necessary stuff to install fo
 
 # TO DO
 - Finish the project, ie: adding arch support, possible fedora support, add useful and essential programs...
+- Provide as an distributable file
 - Create a GUI version
