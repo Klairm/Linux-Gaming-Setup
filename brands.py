@@ -68,3 +68,20 @@ def brandSelUbuntu():
 		else:
 			print("Wrong option, you must choose one number")
 
+def brandSelArch():
+	while True:
+		print(colored.red("WARNING: Choose your correct brand of your graphics card"))
+		print(colored.green('''
+			[1] NVIDIA
+			[2] AMD / INTEL 
+			[3] Go back
+			'''))
+		brArchnd = int(input("Select an option -> "))
+
+		if brArchnd == 1:
+			print("FIXME: Add NVIDIA drivers installer")
+		elif brArchnd == 2:
+			print("FIXME: Add AMD/INTEL drivers installer")
+
+		elif brArchnd == 3:
+			break
