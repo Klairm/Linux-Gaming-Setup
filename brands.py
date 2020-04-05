@@ -15,7 +15,7 @@ def brandSelUbuntu():
 			print(colored.red('''
 			WARNING: Make sure that your graphics card is compatible with the driver and is Vulkan capable, before installing: 
 		
-			Graphics card compatibility -> https://www.nvidia.com/Download/driverResults.aspx/149138/en-us
+			Graphics card compatibility -> https://www.nvidia.com/Download/driverResults.aspx/157462/en-us
 			
 			Check if your GPU it's Vulkan capable -> https://en.wikipedia.org/wiki/Vulkan_(API)#Compatibility '''))
 			op = input("Do you want to continue? [Y/N] ->  ")
