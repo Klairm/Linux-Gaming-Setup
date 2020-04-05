@@ -8,7 +8,7 @@ def disElec():
 			[3] Go back'''))
 		distro = int(input("Select an option -> "))
 		if distro == 1:
-			br.brandSel()
+			br.brandSelUbuntu()
 		elif distro == 2:
 			print("FIXME: Add Arch installer")
 		elif distro == 3:

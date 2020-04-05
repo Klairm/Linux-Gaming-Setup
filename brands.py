@@ -1,6 +1,6 @@
 from clint.textui import colored
 import os, distro	
-def brandSel():
+def brandSelUbuntu():
 	while True:
 		print(colored.red("WARNING: Choose your correct brand of your graphics card"))
 		print(colored.green('''
