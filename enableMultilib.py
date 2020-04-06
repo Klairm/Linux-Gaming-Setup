@@ -1,7 +1,7 @@
 from clint.textui import colored
 import os
 import brands as br
-def pacmanConf():
+def pacmanConf(situation):
 	try:
 		with open('/etc/pacman.conf', 'r') as file:
 		    data = file.readlines()
@@ -13,7 +13,11 @@ def pacmanConf():
 				data[i+1] = "SigLevel = PackageRequired\n"
 				data[i+2] = "Include = /etc/pacman.d/mirrorlist\n"
 				os.system("sudo pacman -Syu")
-				br.brandSelArch()
+				if situation == "drivers":
+					br.brandSelArch()
+				elif situation == "program":
+					pass
+					
 			elif j == "[multilib]\n":
 				print(colored.green('''
 					Seems like multilib it's already uncommented, to be sure you can check it on /etc/pacman.conf
