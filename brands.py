@@ -87,7 +87,7 @@ def brandSelArch():
 				Propietary drivers for Nvidia and Vulkan support will be installed now.
 
 				'''))
-				os.system("sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader")
+			os.system("sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader")
 		elif brArchnd == 2:
 			print(colored.red('''
 				Before installing, Check if your GPU it's Vulkan capable -> https://en.wikipedia.org/wiki/Vulkan_(API)#Compatibility 
