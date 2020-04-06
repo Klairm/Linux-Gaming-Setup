@@ -5,6 +5,7 @@ def pacmanConf():
 	try:
 		with open('/etc/pacman.conf', 'r') as file:
 		    data = file.readlines()
+		    dataBac = file.readlines()
 		for i, j in enumerate(data):
 			
 			if j == "#[multilib]\n":
@@ -27,6 +28,8 @@ def pacmanConf():
 				break
 
 		with open('/etc/pacman.conf', 'w') as file:
-		    file.writelines( data )
+		    file.writelines(data)
+		with open('/etc/pacman.conf.bac', 'w') as file:
+			file.writelines(dataBac)
 	except PermissionError:
 		print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
