@@ -1,4 +1,4 @@
-from pyfiglet import Figlet
+from 	pyfiglet import Figlet
 from clint.textui import colored
 import options as opt
 import os, platform
@@ -18,9 +18,9 @@ while True:
 	op = int(input("Select an option -> "))
 	
 	if op == 1:
-		opt.disElec()
+		opt.disElec("drivers")
 	elif op == 2:
-		print("FIXME: Add tools and programs installation, ie: GOverlay, Lutris, WINE <- (Essential), ")
+		opt.disElec("programs")
 	elif op ==3:
 		break
 	else:
