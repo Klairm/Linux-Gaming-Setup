@@ -101,7 +101,36 @@ def WINE(dist):
 			os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 		else:
 			print("FIXME: Add some handler here, or allow to manually enter the version")
+	elif dist == "debian":
+		print("FIXME: Add Debian/ Fulldebian-based installer")
+	else:
+		print("FIXME: Add more distros?")
 
+def Lutris(dist):
+	if dist == "arch":
+		print(colored.green("Installing lutris"))
+		os.system("sudo pacman -S lutris")
+	elif dist == "ubuntu":
+		print(colored.green("Adding lutris repository"))
+		os.system("sudo add-apt-repository ppa:lutris-team/lutris")
+		os.system("sudo apt-get update")
+		os.system("sudo apt-get install lutris")
+	elif dist == "debian":
+		os.system('echo "deb http://download.opensuse.org/repositories/home:/strycore/Debian_10/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list')
+		os.system("wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_10/Release.key -O- | sudo apt-key add -")
+		os.system("sudo apt-get update")
+		os.system("sudo apt-get install lutris")
+	else:
+		print("FIXME: Add more distros?")
+
+
+def GOverlwMango(dist):
+	if dist == "arch":
+		print("FIXME: Add arch installer")
+	elif dist == "ubuntu":
+		print("FIXME: Add ubuntu installer")
+	elif dist == "debian":
+		print("FIXME: Add debian instaler")
 	else:
 		print("FIXME: Add more distros?")
 

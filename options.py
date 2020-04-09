@@ -9,7 +9,8 @@ def disElec(situation):
 			print(colored.green('''
 				[1] Ubuntu / Linux Mint / Any Ubuntu-based distro
 				[2] Arch / Manjaro / Any arch derivatives
-				[3] Go back'''))
+				[3] Debian / Antix / Any full Debian-based distro
+				[4] Go back'''))
 			distro = int(input("Select an option -> "))
 			if distro == 1:
 				if situation == "drivers":
@@ -24,6 +25,10 @@ def disElec(situation):
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("ubuntu")
+					elif prgm == 2:
+						pr.Lutris("ubuntu")
+					elif prgm == 3:
+						pr.GOverlwMango("ubuntu")
 			elif distro == 2:
 				if situation == "drivers":
 
@@ -46,9 +51,32 @@ def disElec(situation):
 					if prgm == 1:
 						eM.pacmanConf("program")
 						pr.WINE("arch")
+					elif prgm == 2:
+						pr.Lutris("arch")
+					elif prgrm == 3:
+						pr.GOverlwMango("arch")
+					elif prgrm == 4:
+						break
 
 
 			elif distro == 3:
+				print(colored.green('''
+						[1] WINE (Essential)
+						[2] Lutris
+						[3] GOverlay with MangoHUD
+						[4] Back
+						'''))
+				prgm = int(input("Select an option -> "))
+				if prgm == 1:
+					pr.WINE("debian")
+				elif prgm == 2:
+					pr.Lutris("lutris")
+				elif prgm == 3:
+					pr.GOverlwMango("debian")
+				elif prgm == 4:
+					break
+					
+			elif distro == 4:
 				break
 			else:
 				print("Wrong option, you must choose one number")
