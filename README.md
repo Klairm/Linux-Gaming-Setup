@@ -10,5 +10,5 @@ A python script for allow users to install all the necessary stuff to install fo
 # TO DO
 - Finish the project, ie: adding possible fedora support, add useful and essential programs...
 - Create error handler , for basics and common errors, as TypeError, etc...
-- Provide as an distributable file
+- Provide as an distributable file, ie: providing a way for install python dependencies automatically
 - Create a GUI version
