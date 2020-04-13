@@ -3,11 +3,7 @@ import os, distro
 def brandSelUbuntu():
 	while True:
 		print(colored.red("WARNING: Choose your correct brand of your graphics card"))
-		print(colored.green('''
-			[1] NVIDIA
-			[2] AMD / INTEL 
-			[3] Go back
-			'''))
+		print(colored.green("\n[1] NVIDIA\n[2] AMD\n [3] INTEL\n[4] Back\n"))
 		brand = int(input("Select an option -> "))
 
 		if brand == 1:
@@ -31,6 +27,7 @@ def brandSelUbuntu():
 				break
 			else:
 				print("Wrong option, select Y or N")
+		
 		elif brand == 2:
 			print(colored.red('''
 				Note: Only Ubuntu 18.04 and higher is supported for AMD and Intel graphics.
@@ -63,20 +60,17 @@ def brandSelUbuntu():
 					break
 				else:
 					print("Something went wrong") # FIXME: Add error handler
+		
 		elif brand == 3:
 			break
+		
 		else:
 			print("Wrong option, you must choose one number")
 
 def brandSelArch():
 	while True:
 		print(colored.red("WARNING: Choose your correct brand of your graphics card"))
-		print(colored.green('''
-			[1] NVIDIA
-			[2] AMD 
-			[3] INTEL
-			[4] Back
-			'''))
+		print(colored.green("\n[1] NVIDIA\n[2] AMD\n [3] INTEL\n[4] Back\n"))
 		brArchnd = int(input("Select an option -> "))
 
 		if brArchnd == 1:

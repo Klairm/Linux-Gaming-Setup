@@ -1,5 +1,6 @@
 from clint.textui import colored
 import os, distro
+import enableMultilib as eB
 def WINE(dist):
 	if dist == "arch":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
@@ -126,7 +127,48 @@ def Lutris(dist):
 
 def GOverlwMango(dist):
 	if dist == "arch":
-		print("FIXME: Add arch installer")
+		print(colored.green("Updating packages"))
+		os.system("sudo pacman -Sy")
+		print(colored.green("Enabling multilib"))
+		eB.pacmanConf("program")
+
+		print(colored.green("Installing GOverlay, optional dependencies and MangoHUD"))
+		# GOverlay
+		os.system("git clone https://aur.archlinux.org/goverlay-git.git")
+		
+		# GOverlay optinal dependencies 
+		os.system("git clone https://aur.archlinux.org/vkbasalt.git")
+		os.system("pacman -S mesa-demos lib32-mesa-demos vulkan-tools" )
+
+		# MangoHUD
+		os.system("git clone https://aur.archlinux.org/mangohud.git")
+		
+		if os.path.exists("./goverlay-git"):
+			os.chdir("goverlay-git")
+			print(colored.green("Executing PKGBUILD for goverlay-git"))
+			os.system("makepkg -si")
+			r = input("Did goverlay-git installed properly? [Y/N] -> ")
+			if r == "Y" or r == "y":
+				if os.path.exists("./vkbasalt"):
+					os.chdir("vkbasalt")
+					print(colored.green("Executing PKGBUILD for vkbasalt"))
+					os.system("makepkg -si")
+					rVk = input("Did goverlay-git installed properly? [Y/N] -> ")
+					if rVk == "Y" or rVk == "y":
+						print(colored.green("Everything fine"))
+						pass
+					elif rVk == "N" or rVk == "n":
+						print("FIXME: Add error handler")
+					else:
+						print(colored.red("wrong option"))
+
+			elif r == "N" or r== "n":
+				print("FIXME: Add error handler")
+			else:
+				print(colored.red("wrong option"))
+		else:	
+			print(colored.red("Cannot found goverlay-git directory"))
+
 	elif dist == "ubuntu":
 		print("FIXME: Add ubuntu installer")
 	elif dist == "debian":

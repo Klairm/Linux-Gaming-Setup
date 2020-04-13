@@ -11,10 +11,7 @@ while True:
 	if platform.system() != 'Linux':
 		print("This is for Linux only")
 		break
-	print(colored.green('''
-		[1] Drivers and DXVK installation
-		[2] Useful tools and programs
-		[3] Exit'''))
+	print(colored.green("[1] Drivers and DXVK installation\n[2] Useful tools and programs\n[3] Exit"))
 	op = int(input("Select an option -> "))
 	
 	if op == 1:

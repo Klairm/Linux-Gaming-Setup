@@ -1,7 +1,8 @@
 from clint.textui import colored
-import os
+import os, sys
 import brands as br
 def pacmanConf(situation):
+	
 	try:
 		with open('/etc/pacman.conf', 'r') as file:
 		    data = file.readlines()
@@ -25,10 +26,7 @@ def pacmanConf(situation):
 					 https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html'''))
 				break
 			else:
-				print(colored.red('''
-					Either multilib is already enabled, or the script can't find it on your /etc/pacman.conf file.
-					You can check this site for know more about enabling multilib:
-					 https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html'''))
+				print("Either multilib is already enabled, or the script can't find it on your /etc/pacman.conf file\n You can check this site for know more about enabling multilib:\n https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html")
 				break
 
 		with open('/etc/pacman.conf', 'w') as file:
@@ -37,3 +35,4 @@ def pacmanConf(situation):
 			file.writelines(dataBac)
 	except PermissionError:
 		print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
+		sys.exit(1)

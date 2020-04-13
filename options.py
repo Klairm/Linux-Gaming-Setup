@@ -2,26 +2,17 @@ from clint.textui import colored
 import brands as br
 import enableMultilib as eM
 import programs as pr
-import os
+import os, sys
 def disElec(situation):
 	while True:
 		try:
-			print(colored.green('''
-				[1] Ubuntu / Linux Mint / Any Ubuntu-based distro
-				[2] Arch / Manjaro / Any arch derivatives
-				[3] Debian / Antix / Any full Debian-based distro
-				[4] Go back'''))
+			print(colored.green("\n[1] Ubuntu / Linux Mint / Any Ubuntu-based distro\n[2] Arch / Manjaro / Any arch derivatives\n[3] Debian / Antix / Any full Debian-based distro\n[4] Go back"))
 			distro = int(input("Select an option -> "))
 			if distro == 1:
 				if situation == "drivers":
 					br.brandSelUbuntu()
 				elif situation == "programs":
-					print(colored.green('''
-						[1] WINE (Essential)
-						[2] Lutris
-						[3] GOverlay with MangoHUD
-						[4] Back
-						'''))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("ubuntu")
@@ -29,6 +20,8 @@ def disElec(situation):
 						pr.Lutris("ubuntu")
 					elif prgm == 3:
 						pr.GOverlwMango("ubuntu")
+					elif prgm == 4:
+						break
 			elif distro == 2:
 				if situation == "drivers":
 
@@ -41,31 +34,21 @@ def disElec(situation):
 					if op == 'Y' or op == 'y':
 						eM.pacmanConf("drivers")
 				elif situation == "programs":
-					print(colored.green('''
-						[1] WINE (Essential)
-						[2] Lutris
-						[3] GOverlay with MangoHUD
-						[4] Back
-						'''))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						eM.pacmanConf("program")
 						pr.WINE("arch")
 					elif prgm == 2:
 						pr.Lutris("arch")
-					elif prgrm == 3:
+					elif prgm == 3:
 						pr.GOverlwMango("arch")
-					elif prgrm == 4:
+					elif prgm == 4:
 						break
 
 
 			elif distro == 3:
-				print(colored.green('''
-						[1] WINE (Essential)
-						[2] Lutris
-						[3] GOverlay with MangoHUD
-						[4] Back
-						'''))
+				print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
 				prgm = int(input("Select an option -> "))
 				if prgm == 1:
 					pr.WINE("debian")
@@ -81,7 +64,8 @@ def disElec(situation):
 			else:
 				print("Wrong option, you must choose one number")
 		except PermissionError:
-			print("Run the script as root, using: sudo GamingSetup.py")
+			print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
+			sys.exit(1)
 
 
 			
