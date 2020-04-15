@@ -8,6 +8,9 @@ def disElec(situation):
 		try:
 			print(colored.green("\n[1] Ubuntu / Linux Mint / Any Ubuntu-based distro\n[2] Arch / Manjaro / Any arch derivatives\n[3] Debian / Antix / Any full Debian-based distro\n[4] Go back"))
 			distro = int(input("Select an option -> "))
+			
+			# Ubuntu / Ubuntu-based installer
+			
 			if distro == 1:
 				if situation == "drivers":
 					br.brandSelUbuntu()
@@ -22,9 +25,11 @@ def disElec(situation):
 						pr.GOverlwMango("ubuntu")
 					elif prgm == 4:
 						break
+			
+			# Arch / Arch derivatives installer
+			
 			elif distro == 2:
 				if situation == "drivers":
-
 					print(colored.red('''
 						The script will edit the /etc/pacman.conf file, for enable multilib, you can know more about multlib here:
 						https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html
@@ -46,18 +51,23 @@ def disElec(situation):
 					elif prgm == 4:
 						break
 
+			# Debian / full-debian based installer
 
 			elif distro == 3:
-				print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
-				prgm = int(input("Select an option -> "))
-				if prgm == 1:
-					pr.WINE("debian")
-				elif prgm == 2:
-					pr.Lutris("lutris")
-				elif prgm == 3:
-					pr.GOverlwMango("debian")
-				elif prgm == 4:
-					break
+				if situation == "drivers":
+					print(colored.red("FIXME: Add drivers installer for Debian"))
+
+				elif situation == "programs":
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
+					prgm = int(input("Select an option -> "))
+					if prgm == 1:
+						pr.WINE("debian")
+					elif prgm == 2:
+						pr.Lutris("lutris")
+					elif prgm == 3:
+						pr.GOverlwMango("debian")
+					elif prgm == 4:
+						break
 					
 			elif distro == 4:
 				break
@@ -66,6 +76,3 @@ def disElec(situation):
 		except PermissionError:
 			print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
 			sys.exit(1)
-
-
-			

@@ -170,14 +170,53 @@ def GOverlwMango(dist):
 			print(colored.red("Cannot found goverlay-git directory"))
 
 	elif dist == "ubuntu":
-		print("FIXME: Add ubuntu installer")
+		mHUDGOInst()		
 	elif dist == "debian":
-		print("FIXME: Add debian instaler")
+		mHUDGOInst()
 	else:
 		print("FIXME: Add more distros?")
 
 
 
-
-
-
+def mHUDGOInst():
+	if os.path.isfile("/usr/bin/mangohud"):
+		print(colored.green("MangoHud already installed, proceeding to install GOverlay"))
+		if os.path.isfile("/usr/bin/goverlay"):
+			print(colored.green("GOverlay already installed"))
+		else:
+			os.system("mkdir GOverlay")
+			if os.path.exists("./GOverlay"):
+				print(colored.green("Installing GOverlay..."))
+				os.chdir("./GOverlay")
+				# FIXME: Add an automatic update for GOverlay
+				os.system("wget https://github.com/benjamimgois/goverlay/releases/download/0.3.1/goverlay_0_3_1.tar.gz")
+				os.system("tar -xf goverlay_0_3_1.tar.gz")
+				os.system("sudo cp goverlay /usr/bin/")
+				if os.path.isfile("/usr/bin/goverlay"):
+					print(colored.green("GOverlay installed succesfuly"))
+				else:
+					print(colored.red("Something went wrong installing GOverlay, please try again, or report the issue"))
+			else:
+				print(colored.red("Cannot found GOverlay directory"))
+				# FIXME: Add error handler
+	else:
+		print(colored.green("Installing MangoHUD..."))
+		os.system("mkdir MangoHUD")
+		if os.path.exists("./MangoHUD"):
+			os.chdir("./MangoHUD")
+			# FIXME: Add an automatic update for mangohud
+			os.system("wget https://github.com/flightlessmango/MangoHud/releases/download/v0.3.1/MangoHud-v0.3.1.tar.gz")
+			os.system("tar -xf MangoHud-v0.3.1.tar.gz")
+			if os.path.exists("./MangoHud"):
+				os.chdir("./MangoHud")
+				os.system("./mangohud-setup.sh install")
+				if os.path.isfile("/usr/bin/mangohud"):
+					print(colored.green("MangoHUD installed succesfuly"))
+					mHUDGOInst()
+				else:
+					print(colored.red("Something went wrong installing MangoHUD, please try again, or report the issue"))
+					# FIXME: Add error handler
+			else:
+				print(colored.red("Cannot found MangoHud directory"))
+		else:
+			print(colored.red("Cannot found MangoHUD directory"))
