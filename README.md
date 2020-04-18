@@ -12,3 +12,7 @@ A python script for allow users to install all the necessary stuff to install fo
 - Create error handler , for basics and common errors, as TypeError, etc...
 - Provide as an distributable file, ie: providing a way for install python dependencies automatically
 - Create a GUI version
+
+
+# GUI Version
+In the repo of Forknife , it's where the GUI version is being worked on https://github.com/RubixPower/Linux-Gaming-Setup
