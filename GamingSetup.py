@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from 	pyfiglet import Figlet
 from clint.textui import colored
 import options as opt
