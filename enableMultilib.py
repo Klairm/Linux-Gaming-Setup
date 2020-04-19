@@ -29,10 +29,10 @@ def pacmanConf(situation):
 				print("Either multilib is already enabled, or the script can't find it on your /etc/pacman.conf file\n You can check this site for know more about enabling multilib:\n https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html")
 				break
 
+		with open('/etc/pacman.conf.backupFromGamingSetup', 'w') as file:
+		    file.writelines(dataBac)
 		with open('/etc/pacman.conf', 'w') as file:
-		    file.writelines(data)
-		with open('/etc/pacman.conf.bac', 'w') as file:
-			file.writelines(dataBac)
+			file.writelines(data)
 	except PermissionError:
-		print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
+		print(colored.red("Run the script as root, using: sudo GamingSetup.py, this is necessary for edit pacman.conf file"))
 		sys.exit(1)
