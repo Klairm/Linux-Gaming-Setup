@@ -219,3 +219,12 @@ def mHUDGOInst():
 				print(colored.red("Cannot found MangoHud directory"))
 		else:
 			print(colored.red("Cannot found MangoHUD directory"))
+
+def Steam(dist):
+	if dist == "arch":
+		eB.pacmanConf("program")
+		os.system("sudo pacman -S steam --needed")
+	elif dist == "ubuntu":
+		os.system("sudo apt install steam-installer")
+	else:
+		print(colored.red("This shouldn't happen"))

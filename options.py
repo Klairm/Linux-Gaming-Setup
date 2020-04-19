@@ -15,7 +15,7 @@ def disElec(situation):
 				if situation == "drivers":
 					br.brandSelUbuntu()
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("ubuntu")
@@ -24,6 +24,8 @@ def disElec(situation):
 					elif prgm == 3:
 						pr.GOverlwMango("ubuntu")
 					elif prgm == 4:
+						pr.Steam("ubuntu")
+					elif prgm == 5:
 						break
 			
 			# Arch / Arch derivatives installer
@@ -39,7 +41,7 @@ def disElec(situation):
 					if op == 'Y' or op == 'y':
 						eM.pacmanConf("drivers")
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						eM.pacmanConf("program")
@@ -49,6 +51,8 @@ def disElec(situation):
 					elif prgm == 3:
 						pr.GOverlwMango("arch")
 					elif prgm == 4:
+						pr.Steam("arch")
+					elif prgm == 5:
 						break
 
 			# Debian / full-debian based installer
@@ -58,7 +62,7 @@ def disElec(situation):
 					print(colored.red("FIXME: Add drivers installer for Debian"))
 
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("debian")
@@ -67,6 +71,8 @@ def disElec(situation):
 					elif prgm == 3:
 						pr.GOverlwMango("debian")
 					elif prgm == 4:
+						pr.Steam("ubuntu")
+					elif prgm == 5:
 						break
 					
 			elif distro == 4:
@@ -76,3 +82,5 @@ def disElec(situation):
 		except PermissionError:
 			print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
 			sys.exit(1)
+		except ValueError:
+			print(colored.red("Invalid entered value"))
