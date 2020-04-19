@@ -1,5 +1,5 @@
 # Linux-Gaming-Setup
-A python script for allow users to install all the necessary stuff to install for be able to play games on Linux.
+A python script which allow users to install drivers and programs of utility and be able to play games on Linux
 
 - Drivers installer based on Lutris wiki https://github.com/lutris/lutris/wiki/Installing-drivers
 
