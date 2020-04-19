@@ -8,6 +8,8 @@ A python script for allow users to install all the necessary stuff to install fo
 ```chmod +x setup.sh```
 - Execute the script and select your distro or distro-based
 ```./setup.sh```
+- Now you can execute the python script
+``` python3 GamingSetup.py ``` 
 
 
 # TO DO
