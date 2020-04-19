@@ -5,7 +5,7 @@ def WINE(dist):
 	if dist == "arch":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
 		print(colored.green("Installing wine dependencies"))
-		os.system("sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader")
+		os.system("sudo pacman -S wine-staging giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libgcrypt libgcrypt lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader --needed")
 	elif dist =="ubuntu":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
 		print(colored.green("Enabling 32-bit architecture"))
@@ -109,7 +109,7 @@ def WINE(dist):
 def Lutris(dist):
 	if dist == "arch":
 		print(colored.green("Installing lutris"))
-		os.system("sudo pacman -S lutris")
+		os.system("sudo pacman -S lutris --needed")
 	elif dist == "ubuntu":
 		print(colored.green("Adding lutris repository"))
 		os.system("sudo add-apt-repository ppa:lutris-team/lutris")
@@ -137,7 +137,7 @@ def GOverlwMango(dist):
 		
 		# GOverlay optinal dependencies 
 		os.system("git clone https://aur.archlinux.org/vkbasalt.git")
-		os.system("pacman -S mesa-demos lib32-mesa-demos vulkan-tools" )
+		os.system("sudo pacman -S mesa-demos lib32-mesa-demos vulkan-tools --needed" )
 
 		# MangoHUD
 		os.system("git clone https://aur.archlinux.org/mangohud.git")

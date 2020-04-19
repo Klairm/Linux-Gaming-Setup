@@ -81,14 +81,14 @@ def brandSelArch():
 				Propietary drivers for Nvidia and Vulkan support will be installed now.
 
 				'''))
-			os.system("sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader")
+			os.system("sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader --needed")
 		elif brArchnd == 2:
 			print(colored.red('''
 				Before installing, Check if your GPU it's Vulkan capable -> https://en.wikipedia.org/wiki/Vulkan_(API)#Compatibility 
 				'''))
 			op = input("Do you want to continue? [Y/N] -> ")
 			if op == 'Y' or op == 'y':
-				os.system("sudo pacman -S lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader")
+				os.system("sudo pacman -S lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader --needed")
 			elif op == 'N' or op == 'n':
 				break
 			else:
@@ -105,7 +105,7 @@ def brandSelArch():
 				'''))
 			opI = input("Do you want to continue? [Y/N] -> ")
 			if op == 'Y' or op == 'y':
-				os.system("sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader")
+				os.system("sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader --needed")
 			elif op == 'N' or op == 'n':
 				break
 			else:
