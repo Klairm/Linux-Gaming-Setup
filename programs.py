@@ -13,9 +13,8 @@ def WINE(dist):
 		print(colored.green("Adding repository key for WINE"))
 		os.system("wget -nc https://dl.winehq.org/wine-builds/winehq.key")
 		os.system("sudo apt-key add winehq.key")
-		nameDistro = distro.linux_distribution[0]
-		verDistro = distro.linux_distribution[1]
-		if float(verDistro) == 19.10 and nameDistro == "Ubuntu":
+		codename = distro.linux_distribution()[2]
+		if codename.lower() == "eoan":
 			print(colored.green("Adding repository"))
 			os.system("sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ eoan main'")
 			print(colored.green("Updating packages, installing wine and wine dependencies"))
@@ -32,7 +31,7 @@ def WINE(dist):
 					
 			os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 		
-		elif float(verDistro) == 19.04 and nameDistro == "Ubuntu":
+		elif codename.lower() == "disco":
 			print(colored.green("Adding repository"))
 			os.system("sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ disco main'")
 			print(colored.green("Updating packages, installing wine and wine dependencies"))
@@ -49,7 +48,7 @@ def WINE(dist):
 				
 			os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 		
-		elif float(verDistro) == 18.10 and nameDistro == "Ubuntu":
+		elif codename.lower() == "cosmic":
 			
 			print(colored.green("Adding repository"))
 			os.system("sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ cosmic main'")
@@ -67,7 +66,7 @@ def WINE(dist):
 				
 			os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 
-		elif (float(verDistro) == 18.04 and nameDistro == "Ubuntu") or (float(verDistro) >= 19.0 and nameDistro == "Linuxt Mint"):
+		elif codename.lower() == "bionic":
 			print(colored.green("Adding repository"))
 			os.system("sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'")
 			print(colored.green("Updating packages, installing wine and wine dependencies"))
@@ -84,7 +83,7 @@ def WINE(dist):
 				
 			os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 
-		elif (float(verDistro) == 16.04 and nameDistro == "Ubuntu") or (float(verDistro) >= 18.0 and float(verDistro) < 19 and nameDistro == "Linux Mint"):
+		elif codename.lower() == "xenial":
 			print(colored.green("Adding repository"))
 			os.system("sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'")
 			print(colored.green("Updating packages, installing wine and wine dependencies"))
