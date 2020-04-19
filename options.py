@@ -46,7 +46,6 @@ def disElec(situation):
 						pr.WINE("arch")
 					elif prgm == 2:
 						pr.Lutris("arch")
-						
 					elif prgm == 3:
 						pr.GOverlwMango("arch")
 					elif prgm == 4:
