@@ -7,7 +7,7 @@ read op
 if [ $op == 1 ];
 then
 	echo "Installing python and pip"
-	sudo apt install python python3 python3-pip python-pip
+	sudo apt install python3 python3-pip
 	echo "Installing python dependencies"
 	pip3 install clint distro pyfiglet --user
 elif [ $op == 2 ];
