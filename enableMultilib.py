@@ -7,6 +7,9 @@ def pacmanConf(situation):
 		with open('/etc/pacman.conf', 'r') as file:
 		    data = file.readlines()
 		    dataBac = file.readlines()
+		with open('/etc/pacman.conf.backupFromGamingSetup', 'w') as file:
+		    file.writelines(dataBac)
+
 		for i, j in enumerate(data):
 			
 			if j == "#[multilib]\n":
@@ -29,8 +32,6 @@ def pacmanConf(situation):
 				print("Either multilib is already enabled, or the script can't find it on your /etc/pacman.conf file\n You can check this site for know more about enabling multilib:\n https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html")
 				break
 
-		with open('/etc/pacman.conf.backupFromGamingSetup', 'w') as file:
-		    file.writelines(dataBac)
 		with open('/etc/pacman.conf', 'w') as file:
 			file.writelines(data)
 	except PermissionError:
