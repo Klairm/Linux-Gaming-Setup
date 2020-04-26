@@ -24,7 +24,8 @@ More will be added in a future
 - Execute the script and select your distro or distro-based
 ```./setup.sh```
 - Now you can execute the python script
-``` python3 GamingSetup.py ``` 
+``` python3 GamingSetup.py ```  or alternative ```./GamingSetup.py``` 
+
 
 
 # TO DO
