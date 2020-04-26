@@ -5,6 +5,7 @@ A python script which allow users to install drivers and programs of utility and
 
 With this script you can currently install drivers for Debian, Ubuntu and Arch, more distros will be added
 You can install this programs:
+	
 	- WINE: A program that allows execute Windows programs on Linux, for more info you can visit https://www.winehq.org/
 	
 	- Lutris: A gaming client for Linux, which allows you to install games and emulators without too much tweaking, you can visit https://lutris.net/about/ for more info
