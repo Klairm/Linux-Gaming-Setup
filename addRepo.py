@@ -1,5 +1,5 @@
 import distro, os, sys
-from clint.ui import colored
+from clint.textui import colored
 
 def debianRepo():
 	try:
