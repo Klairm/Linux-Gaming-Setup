@@ -1,6 +1,7 @@
 from clint.textui import colored
 import os, distro
 import enableMultilib as eB
+import addRepo
 def WINE(dist):
 	if dist == "arch":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
@@ -37,28 +38,7 @@ def WINE(dist):
 		os.system("sudo dpkg --add-architecture i386")
 		os.system("wget -nc https://dl.winehq.org/wine-builds/Release.key")
 		os.system("sudo apt-key add Release.key")
-		debCodename = distro.linux_distribution()[2].lower()
-		repo = "'deb https://dl.winehq.org/wine-builds/debian/ {} main'".format(debCodename)
-		
-		with open('/etc/apt/sources.list', 'r') as file:
-		    data = file.readlines()
-		    dataBac = file.readlines()
-		with open('/etc/apt/sources.list.gamingSetupBACK', 'w') as file:
-		    file.writelines(dataBac)
-		for i, j in enumerate(data):
-			if j == repo:
-				print(colored.green("WINE repository already found on /etc/apt/sources.list"))
-				pass
-			else:
-				os.system("echo 'deb https://dl.winehq.org/wine-builds/debian/ {} main' | sudo tee -a /etc/apt/sources.list".format(debCodename))
-		
-		os.system("sudo apt update")
-		os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
-		os.system("sudo apt install --install-recommends wine")
-		
-		
-
-		
+		addRepo.debianRepo()
 	else:
 		print("FIXME: Add more distros?")
 
