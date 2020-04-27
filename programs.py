@@ -1,6 +1,7 @@
 from clint.textui import colored
 import os, distro
 import enableMultilib as eB
+import addRepo
 def WINE(dist):
 	if dist == "arch":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
@@ -19,6 +20,7 @@ def WINE(dist):
 		print(colored.green("Updating packages, installing wine and wine dependencies"))
 		os.system("sudo apt-get update")
 		os.system("sudo apt-get install --install-recommends wine-stable")
+		# FIXME: Add error handler for this
 		op = input("Did you received this error? -> The following packages have unmet dependencies [Y/N] -> ")
 		if op == "Y" or op == "y":
 			print(colored.green("Executing alternative command for solve that error"))
@@ -31,7 +33,12 @@ def WINE(dist):
 		os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 		
 	elif dist == "debian":
-		print("FIXME: Add Debian/ Fulldebian-based installer")
+		print('''WINE allows you to run Windows software in other OS, like Linux.''')
+		print(colored.green("Enabling 32-bit architecture"))
+		os.system("sudo dpkg --add-architecture i386")
+		os.system("wget -nc https://dl.winehq.org/wine-builds/Release.key")
+		os.system("sudo apt-key add Release.key")
+		addRepo.debianRepo()
 	else:
 		print("FIXME: Add more distros?")
 

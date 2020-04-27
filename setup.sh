@@ -1,6 +1,8 @@
 #!/bin/bash
 
+chmod +x GamingSetup.py
 #FIXME : Add more distros
+
 echo "[1] Ubuntu / Debian / Debian-based [2] Arch / Manjaro / Arch-based\n"
 echo "Select your distro [1/2] -> " 
 read op
