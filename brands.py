@@ -62,8 +62,10 @@ def brandSelUbuntu():
 					print("Something went wrong") # FIXME: Add error handler
 		
 		elif brand == 3:
+                    print(colored.red("FIXME: Add Intel drivers installer"))
+		elif brand == 4:
 			break
-		
+                
 		else:
 			print("Wrong option, you must choose one number")
 
