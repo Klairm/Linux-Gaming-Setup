@@ -8,7 +8,6 @@ f = Figlet(font='speed')
 print(colored.yellow(f.renderText('''
 	GAME SETUP''')))
 
-
 while True:
 	try:
 		if platform.system() != 'Linux':
