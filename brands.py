@@ -3,7 +3,7 @@ import os, distro
 def brandSelUbuntu():
 	while True:
 		print(colored.red("WARNING: Choose your correct brand of your graphics card"))
-		print(colored.green("\n[1] NVIDIA\n[2] AMD\n [3] INTEL\n[4] Back\n"))
+		print(colored.green("\n[1] NVIDIA\n[2] AMD/INTEL\n[3] Back\n"))
 		brand = int(input("Select an option -> "))
 
 		if brand == 1:
@@ -62,9 +62,7 @@ def brandSelUbuntu():
 					print("Something went wrong") # FIXME: Add error handler
 		
 		elif brand == 3:
-                    print(colored.red("FIXME: Add Intel drivers installer"))
-		elif brand == 4:
-			break
+                    break
                 
 		else:
 			print("Wrong option, you must choose one number")
