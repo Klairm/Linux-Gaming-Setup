@@ -34,7 +34,7 @@ More will be added in a future
 - Create error handler , for basics and common errors, as TypeError, etc...
 - Provide as an distributable file, ie: providing a way for install python dependencies automatically
 - Create a GUI version
-
+- Create a bash version so no need to download any dependencies
 
 # GUI Version
 
