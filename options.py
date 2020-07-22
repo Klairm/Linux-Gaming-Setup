@@ -15,7 +15,7 @@ def disElec(situation):
 				if situation == "drivers":
 					br.brandSelUbuntu()
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("ubuntu")
@@ -26,7 +26,11 @@ def disElec(situation):
 					elif prgm == 4:
 						pr.Steam("ubuntu")
 					elif prgm == 5:
+						pr.feralGamemode("ubuntu")
+					elif prgm == 6:
 						break
+					else:
+						print("Wrong option!")
 			
 			# Arch / Arch derivatives installer
 			
@@ -41,7 +45,7 @@ def disElec(situation):
 					if op == 'Y' or op == 'y':
 						eM.pacmanConf("drivers")
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						eM.pacmanConf("program")
@@ -53,7 +57,11 @@ def disElec(situation):
 					elif prgm == 4:
 						pr.Steam("arch")
 					elif prgm == 5:
+						pr.feralGamemode("arch")
+					elif prgrm == 6:
 						break
+					else:
+						print("Wrong option!")
 
 			# Debian / full-debian based installer
 
@@ -62,7 +70,7 @@ def disElec(situation):
 					print(colored.red("FIXME: Add drivers installer for Debian"))
 
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("debian")
@@ -73,7 +81,11 @@ def disElec(situation):
 					elif prgm == 4:
 						pr.Steam("ubuntu")
 					elif prgm == 5:
+						pr.feralGamemode("ubuntu")
+					elif prgm == 6:
 						break
+					else:
+						print("Wrong option!")
 					
 			elif distro == 4:
 				break
