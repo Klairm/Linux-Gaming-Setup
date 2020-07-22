@@ -1,5 +1,5 @@
 from clint.textui import colored
-import os, distro
+import os, distro, sys
 import enableMultilib as eB
 import addRepo
 def WINE(dist):
@@ -163,3 +163,42 @@ def Steam(dist):
 		os.system("sudo apt install steam-installer")
 	else:
 		print(colored.red("This shouldn't happen"))
+
+def feralGamemode(dist):
+	if dist == "arch":
+		os.system("sudo pacman -S meson systemd git dbus")
+		cloneFeralGamemode("arch")
+	elif dist == "ubuntu":
+		cloneFeralGamemode("ubuntu")
+	else:
+		print("wrong distro")
+
+
+def Git(dist):
+	if dist == "arch":
+		os.system("sudo pacman -S git")
+	elif dist == "ubuntu":
+		os.system("sudo apt update")
+		os.system("sudo apt install git")
+	else:
+		print(colored.red("wrong distro"))
+
+def cloneFeralGamemode(dist):
+		if os.path.exists("./Gamemode"):
+			os.chdir("./Gamemode")
+		else:
+			os.system("mkdir Gamemode")
+			os.chdir("./Gamemode")
+		if os.WEXITSTATUS(os.system("git clone https://github.com/FeralInteractive/gamemode.git")) == 127:
+			git = input(print(colored.red("Cannot found Git, Git is needed for install some programs, proceed to install Git? [Y/N]")))
+			if git == "y" or git == "Y":
+				Git(dist)
+				os.system("git clone https://github.com/FeralInteractive/gamemode.git")
+			elif git == "n" or git == "N":
+				sys.exit("Installation cancelled")
+		os.chdir("gamemode")
+		os.system("git checkout 1.5.1")
+		os.system("sudo chmod +x bootstrap.sh")
+		os.system("./bootstrap.sh")
+		
+
