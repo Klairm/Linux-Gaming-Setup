@@ -16,6 +16,8 @@ You can install this programs:
 
 	- MangoHUD: A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU loads and more. https://github.com/flightlessmango/MangoHud
 
+	- Feral GameMode: a daemon/lib combo for Linux that allows games to request a set of optimisations be temporarily applied to the host OS and/or a game process. https://github.com/FeralInteractive/gamemode
+
 More will be added in a future
 
 
@@ -25,16 +27,16 @@ More will be added in a future
 - Execute the script and select your distro or distro-based
 ```./setup.sh```
 - Now you can execute the python script
-``` python3 GamingSetup.py ```  or alternative ```./GamingSetup.py``` 
+```./GamingSetup.py```   or alternative  ``` python3 GamingSetup.py ```
 
 
 
 # TO DO
 - Finish the project, ie: adding possible fedora support, Debian drivers installation,add more useful and essential programs...
 - Create error handler , for basics and common errors, as TypeError, etc...
-- Provide as an distributable file, ie: providing a way for install python dependencies automatically
-- Create a GUI version
-- Create a bash version so no need to download any dependencies
+- Provide as an distributable file, ie: providing a way for install python dependencies automatically or with pyinstaller
+- Create a own GUI version
+- Create a bash version so no need to download any dependencies (?)
 
 # GUI Version
 
