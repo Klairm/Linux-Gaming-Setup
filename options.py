@@ -1,6 +1,5 @@
 from clint.textui import colored
 import brands as br
-import enableMultilib as eM
 import programs as pr
 import os, sys
 def disElec(situation):
@@ -43,12 +42,12 @@ def disElec(situation):
 						'''))
 					op = input("Do you want to continue? [Y/N] -> ")
 					if op == 'Y' or op == 'y':
-						eM.pacmanConf("drivers")
+						os.system("sudo enableMultilib.py drivers")
 				elif situation == "programs":
 					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
-						eM.pacmanConf("program")
+						os.system("sudo enableMultilib.py program")
 						pr.WINE("arch")
 					elif prgm == 2:
 						pr.Lutris("arch")
@@ -63,7 +62,7 @@ def disElec(situation):
 					else:
 						print("Wrong option!")
 
-			# Debian / full-debian based installer
+			# Dpian / full-debian based installer
 
 			elif distro == 3:
 				if situation == "drivers":

@@ -1,7 +1,7 @@
 from clint.textui import colored
 import os, distro, sys
-import enableMultilib as eB
 import addRepo
+
 def WINE(dist):
 	if dist == "arch":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
@@ -65,45 +65,31 @@ def GOverlwMango(dist):
 		print(colored.green("Updating packages"))
 		os.system("sudo pacman -Sy")
 		print(colored.green("Enabling multilib"))
-		eB.pacmanConf("program")
+		os.system("sudo enableMultilib.py program")
 
-		print(colored.green("Installing GOverlay, optional dependencies and MangoHUD"))
+		print(colored.green("Installing GOverlay, optional and MangoHUD"))
 		# GOverlay
-		os.system("git clone https://aur.archlinux.org/goverlay-git.git")
-		
-		# GOverlay optinal dependencies 
-		os.system("git clone https://aur.archlinux.org/vkbasalt.git")
-		os.system("sudo pacman -S mesa-demos lib32-mesa-demos vulkan-tools --needed" )
-
-		# MangoHUD
-		os.system("git clone https://aur.archlinux.org/mangohud.git")
-		
-		if os.path.exists("./goverlay-git"):
-			os.chdir("goverlay-git")
-			print(colored.green("Executing PKGBUILD for goverlay-git"))
-			os.system("makepkg -si")
-			r = input("Did goverlay-git installed properly? [Y/N] -> ")
-			if r == "Y" or r == "y":
-				if os.path.exists("./vkbasalt"):
-					os.chdir("vkbasalt")
-					print(colored.green("Executing PKGBUILD for vkbasalt"))
-					os.system("makepkg -si")
-					rVk = input("Did goverlay-git installed properly? [Y/N] -> ")
-					if rVk == "Y" or rVk == "y":
-						print(colored.green("Everything fine"))
-						pass
-					elif rVk == "N" or rVk == "n":
-						print("FIXME: Add error handler")
+		if os.WEXITSTATUS(os.system("yay goverlay")) == 127:
+			goverlay = input(print("Seems like you don't have yay installed (it's an AUR helper for install packages from the AUR), proceed to install yay? [Y/N] ->"))
+			if goverlay == "y" or goverlay == "Y":
+				if os.WEXITSTATUS(os.system("git clone https://aur.archlinux.org/yay.git")) == 127:
+					git = input(print(colored.red("Cannot found Git, Git is needed for install some programs, proceed to install Git? [Y/N]")))
+					if git == "y" or git=="Y":
+						Git("arch")
+						os.system("git clone https://aur.archlinux.org/yay.git")
+						os.chdir("yay")
+						os.system("makepkg -si")
+					elif git == "N" ir git == "n":
+						sys.exit("cancelled installation")
 					else:
-						print(colored.red("wrong option"))
-
-			elif r == "N" or r== "n":
-				print("FIXME: Add error handler")
+						print("Wrong option!")
+				os.system("yay goverlay")
+			elif goverlay == "n" or goverlay == "N":
+				sys.exit("Installation cancelled")
 			else:
-				print(colored.red("wrong option"))
-		else:	
-			print(colored.red("Cannot found goverlay-git directory"))
-
+				print("Wrong option!")
+		os.system("sudo pacman -S mesa-demos lib32-mesa-demos vulkan-tools --needed" )
+		os.system("yay mangohud")
 	elif dist == "ubuntu":
 		mHUDGOInst()		
 	elif dist == "debian":

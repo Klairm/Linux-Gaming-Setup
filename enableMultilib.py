@@ -1,6 +1,8 @@
 from clint.textui import colored
 import os, sys
 import brands as br
+
+
 def pacmanConf(situation):
 	
 	try:
@@ -37,3 +39,5 @@ def pacmanConf(situation):
 	except PermissionError:
 		print(colored.red("Run the script as root, using: sudo GamingSetup.py, this is necessary for edit pacman.conf file"))
 		sys.exit(1)
+
+pacmanConf(sys.argv[1])
