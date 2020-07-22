@@ -90,8 +90,5 @@ def disElec(situation):
 				break
 			else:
 				print("Wrong option, you must choose one number")
-		except PermissionError:
-			print(colored.red("Run the script as root, using: sudo GamingSetup.py"))
-			sys.exit(1)
 		except ValueError:
 			print(colored.red("Invalid entered value"))

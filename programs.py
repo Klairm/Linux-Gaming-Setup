@@ -1,5 +1,5 @@
 from clint.textui import colored
-import os, distro, sys
+import os, distro,sys,subprocess
 import addRepo
 
 def WINE(dist):
@@ -65,7 +65,7 @@ def GOverlwMango(dist):
 		print(colored.green("Updating packages"))
 		os.system("sudo pacman -Sy")
 		print(colored.green("Enabling multilib"))
-		os.system("sudo enableMultilib.py program")
+		subprocess.call("sudo","python3","enableMultilib.py","program")
 
 		print(colored.green("Installing GOverlay, optional and MangoHUD"))
 		# GOverlay
@@ -79,7 +79,7 @@ def GOverlwMango(dist):
 						os.system("git clone https://aur.archlinux.org/yay.git")
 						os.chdir("yay")
 						os.system("makepkg -si")
-					elif git == "N" ir git == "n":
+					elif git == "N" or git == "n":
 						sys.exit("cancelled installation")
 					else:
 						print("Wrong option!")
