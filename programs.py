@@ -69,7 +69,14 @@ def GOverlwMango(dist):
 
 		print(colored.green("Installing GOverlay, optional dependencies and MangoHUD"))
 		# GOverlay
-		os.system("git clone https://aur.archlinux.org/goverlay-git.git")
+		if os.WEXITSTATUS(os.system("git clone https://aur.archlinux.org/goverlay-git.git")) == 127:
+			git = input(print(colored.red("Cannot found Git, Git is needed for install some programs, proceed to install Git? [Y/N]")))
+			if git == "y" or git == "Y":
+				Git(arch)
+				os.system("git clone https://aur.archlinux.org/goverlay-git.git")
+			elif git == "n" or git == "N":
+				sys.exit("Installation cancelled")
+
 		
 		# GOverlay optinal dependencies 
 		os.system("git clone https://aur.archlinux.org/vkbasalt.git")
@@ -123,7 +130,7 @@ def mHUDGOInst():
 				print(colored.green("Installing GOverlay..."))
 				os.chdir("./GOverlay")
 				# FIXME: Add an automatic update for GOverlay
-				os.system("wget https://github.com/benjamimgois/goverlay/releases/download/0.3.1/goverlay_0_3_1.tar.gz")
+				os.system("wget https://github.com/benjamimgois/goverlay/releases/download/0.3.6/goverlay_0_3_6.tar.xz")
 				os.system("tar -xf goverlay_0_3_1.tar.gz")
 				os.system("sudo cp goverlay /usr/bin/")
 				if os.path.isfile("/usr/bin/goverlay"):
@@ -139,7 +146,7 @@ def mHUDGOInst():
 		if os.path.exists("./MangoHUD"):
 			os.chdir("./MangoHUD")
 			# FIXME: Add an automatic update for mangohud
-			os.system("wget https://github.com/flightlessmango/MangoHud/releases/download/v0.3.1/MangoHud-v0.3.1.tar.gz")
+			os.system("wget https://github.com/flightlessmango/MangoHud/releases/download/v0.4.1/MangoHud-v0.4.1.tar.gz")
 			os.system("tar -xf MangoHud-v0.3.1.tar.gz")
 			if os.path.exists("./MangoHud"):
 				os.chdir("./MangoHud")
