@@ -69,6 +69,7 @@ def GOverlwMango(dist):
 
 		print(colored.green("Installing GOverlay, optional and MangoHUD"))
 		# GOverlay
+
 		if os.WEXITSTATUS(os.system("yay goverlay")) == 127:
 			goverlay = input(print("Seems like you don't have yay installed (it's an AUR helper for install packages from the AUR), proceed to install yay? [Y/N] ->"))
 			if goverlay == "y" or goverlay == "Y":
@@ -109,7 +110,7 @@ def mHUDGOInst():
 				print(colored.green("Installing GOverlay..."))
 				os.chdir("./GOverlay")
 				# FIXME: Add an automatic update for GOverlay
-				os.system("wget https://github.com/benjamimgois/goverlay/releases/download/0.3.1/goverlay_0_3_1.tar.gz")
+				os.system("wget https://github.com/benjamimgois/goverlay/releases/download/0.3.6/goverlay_0_3_6.tar.xz")
 				os.system("tar -xf goverlay_0_3_1.tar.gz")
 				os.system("sudo cp goverlay /usr/bin/")
 				if os.path.isfile("/usr/bin/goverlay"):
@@ -125,7 +126,7 @@ def mHUDGOInst():
 		if os.path.exists("./MangoHUD"):
 			os.chdir("./MangoHUD")
 			# FIXME: Add an automatic update for mangohud
-			os.system("wget https://github.com/flightlessmango/MangoHud/releases/download/v0.3.1/MangoHud-v0.3.1.tar.gz")
+			os.system("wget https://github.com/flightlessmango/MangoHud/releases/download/v0.4.1/MangoHud-v0.4.1.tar.gz")
 			os.system("tar -xf MangoHud-v0.3.1.tar.gz")
 			if os.path.exists("./MangoHud"):
 				os.chdir("./MangoHud")
