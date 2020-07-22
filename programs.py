@@ -77,12 +77,13 @@ def GOverlwMango(dist):
 					if git == "y" or git=="Y":
 						Git("arch")
 						os.system("git clone https://aur.archlinux.org/yay.git")
-						os.chdir("yay")
-						os.system("makepkg -si")
 					elif git == "N" or git == "n":
 						sys.exit("cancelled installation")
 					else:
 						print("Wrong option!")
+				os.system("git clone https://aur.archlinux.org/yay.git")	
+				os.chdir("yay")
+				os.system("makepkg -si")
 				os.system("yay goverlay")
 			elif goverlay == "n" or goverlay == "N":
 				sys.exit("Installation cancelled")
