@@ -1,4 +1,3 @@
-from clint.textui import colored
 import os, sys
 import brands as br
 

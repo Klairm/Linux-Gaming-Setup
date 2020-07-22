@@ -1,5 +1,5 @@
 from clint.textui import colored
-import os, distro,sys,
+import os, distro,sys
 import addRepo
 
 def WINE(dist):
