@@ -36,5 +36,8 @@ def pacmanConf(situation):
 
 		with open('/etc/pacman.conf', 'w') as file:
 			file.writelines(data)
-			
+	finally:
+		print(colored.red("Run the script as root, using: sudo GamingSetup.py, this is necessary for edit pacman.conf file"))
+		
+
 pacmanConf(sys.argv[1])
