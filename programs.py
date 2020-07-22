@@ -99,51 +99,78 @@ def GOverlwMango(dist):
 
 
 def mHUDGOInst():
+	confirm = ["y","Y"]
+	deny = ["n","N"]
 	if os.path.isfile("/usr/bin/mangohud"):
-		print(colored.green("MangoHud already installed, proceeding to install GOverlay"))
-		if os.path.isfile("/usr/bin/goverlay"):
-			print(colored.green("GOverlay already installed"))
-		else:
-			os.system("mkdir GOverlay")
-			if os.path.exists("./GOverlay"):
-				print(colored.green("Installing GOverlay..."))
-				os.chdir("./GOverlay")
-				# FIXME: Add an automatic update for GOverlay
-				os.system("wget https://github.com/benjamimgois/goverlay/releases/download/0.3.1/goverlay_0_3_1.tar.gz")
-				os.system("tar -xf goverlay_0_3_1.tar.gz")
-				os.system("sudo cp goverlay /usr/bin/")
-				if os.path.isfile("/usr/bin/goverlay"):
-					print(colored.green("GOverlay installed succesfuly"))
-				else:
-					print(colored.red("Something went wrong installing GOverlay, please try again, or report the issue"))
-			else:
-				print(colored.red("Cannot found GOverlay directory"))
-				# FIXME: Add error handler
+		print(colored.green("MangoHud already installed, updating MangoHud...")
+		os.rm("/usr/bin/mangohud")
+		if os.path.exists("./MangoHUD"):
+			os.system("rm -rf ./MangoHUD")
+			os.mkdir("MangoHUD")
 	else:
 		print(colored.green("Installing MangoHUD..."))
 		os.system("mkdir MangoHUD")
-		if os.path.exists("./MangoHUD"):
-			os.chdir("./MangoHUD")
-			# FIXME: Add an automatic update for mangohud
-			os.system("wget https://github.com/flightlessmango/MangoHud/releases/download/v0.3.1/MangoHud-v0.3.1.tar.gz")
-			os.system("tar -xf MangoHud-v0.3.1.tar.gz")
-			if os.path.exists("./MangoHud"):
-				os.chdir("./MangoHud")
-				os.system("./mangohud-setup.sh install")
-				if os.path.isfile("/usr/bin/mangohud"):
-					print(colored.green("MangoHUD installed succesfuly"))
-					mHUDGOInst()
-				else:
-					print(colored.red("Something went wrong installing MangoHUD, please try again, or report the issue"))
-					# FIXME: Add error handler
-			else:
-				print(colored.red("Cannot found MangoHud directory"))
+	os.chdir("./MangoHUD")
+	# Check if curl and jq is installed
+	if os.WEXITSTATUS(os.system("jq")) == 127:
+		print("jq is not installed, make sure to run the setup.sh script")
+		op = input(print("Proceed to install jq,curl and wget? [Y/N] -> ")))
+		if op in confirm:
+			os.system("sudo apt install jq curl wget")
+		elif op in deny:
+			sys.exit("Installation cancelled")
+	mangoTarball = downloadTarball("flightlessmangom","MangoHud",2)
+	if os.path.isfile(mangoTarball.split()[0]):
+		if os.WEXITSTATUS(os.system("tar -xf {}".format(mangoTarball))) == 2:
+			sys.exit("Fatal error trying to extract the tarball")
 		else:
-			print(colored.red("Cannot found MangoHUD directory"))
+			os.chdir("MangoHud")
+			if os.WEXITSTATUS(os.system("./mangohud-setup.sh install")) == 126:
+				os.system("chmod +x mangohud-setup.sh")
+				os.system("./mangohud-setup.sh install")
+			is os.path.isfile("/usr/bin/mangohud"):
+				print(colored.green("MangoHUD installed succesfully"))
+	else:
+		print("Cannot download MangoHud or can't locate it")
+	if os.path.isfile("/usr/bin/goverlay"):
+		print(colored.green("GOverlay already installed, updating GOverlay..."))
+		os.rm("/usr/bin/goverlay")
+		if os.path.exists("./GOverlay"):
+			os.system("rm -rf ./GOverlay")
+			os.mkdir("GOverlay")
+	else:
+		print(colored.green("Installing GOverlay..."))
+		os.system("mkdir GOverlay")
+	os.chdir("./GOverlay")
+
+	goverlayTarball = downloadTarball("benjamimgois","goverlay",0)
+	if os.path.isfile(goverlayTarball.split()[0]):
+		if os.WEXITSTATUS(os.system("tar -xf {}".format(goverlayTarball))) == 2:
+			sys.exit("Fatal error trying to extract the tarball")
+		else:
+			os.system("chmod +x goverlay")
+			if os.WEXITSTATUS(os.system("mv goverlay /usr/bin/")) >0:
+				print("Error trying to move goverlay file to /us/bin/ executing command as root...")
+				os.system("sudo mv goverlay /usr/bin/")
+
+			if os.path.isfile("/usr/bin/goverlay"):
+				print(colored.green("GOverlay installed succesfully"))
+			else:
+				print("goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
+	else:
+		print("GOverlay download MangoHud or can't locate it")
+	
+
+def downloadTarball(username,repository,index):
+	# Download the latest releas tarball and return the name of it.
+	# FIXME: Handle errors from curl
+	tarball = os.popen("curl -sL https://api.github.com/repos/{}/{}/releases/latest | jq -r '.assets[{}].browser_download_url'".format(username,repository,index)).read()
+	os.system("wget {}".format(tarball))
+	return tarball.split("/")[8]
 
 def Steam(dist):
-	if dist == "arch":
-		eB.pacmanConf("program")
+	if dist == "arch":	
+		os.system("sudo python3 enableMultilib.py program")
 		os.system("sudo pacman -S steam --needed")
 	elif dist == "ubuntu":
 		os.system("sudo apt install steam-installer")
@@ -187,5 +214,4 @@ def cloneFeralGamemode(dist):
 		os.system("git checkout 1.5.1")
 		os.system("sudo chmod +x bootstrap.sh")
 		os.system("./bootstrap.sh")
-		
 
