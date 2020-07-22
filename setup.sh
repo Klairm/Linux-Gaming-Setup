@@ -18,5 +18,6 @@ then
 	sudo pacman -S python3 python3-pip python-pip
 	echo "Installing python dependencies"
 	pip3 install clint distro pyfiglet --user
+	sudo pip3 install clint
 fi
 

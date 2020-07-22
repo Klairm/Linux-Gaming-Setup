@@ -1,6 +1,7 @@
-from clint.textui import colored
 import os, sys
 import brands as br
+
+
 def pacmanConf(situation):
 	
 	try:
@@ -23,7 +24,7 @@ def pacmanConf(situation):
 					pass
 					
 			elif j == "[multilib]\n":
-				print(colored.green('''
+				print(('''
 					Seems like multilib it's already uncommented, to be sure you can check it on /etc/pacman.conf
 					You can check this site for know more about enabling multilib:
 					 https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html'''))
@@ -34,6 +35,8 @@ def pacmanConf(situation):
 
 		with open('/etc/pacman.conf', 'w') as file:
 			file.writelines(data)
-	except PermissionError:
-		print(colored.red("Run the script as root, using: sudo GamingSetup.py, this is necessary for edit pacman.conf file"))
-		sys.exit(1)
+	
+	except IOError:
+		print("Something went wrong trying to open the file /etc/pacman.conf")
+
+pacmanConf(sys.argv[1])
