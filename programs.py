@@ -169,6 +169,7 @@ def feralGamemode(dist):
 		os.system("sudo pacman -S meson systemd git dbus")
 		cloneFeralGamemode("arch")
 	elif dist == "ubuntu":
+		os.system("sudo apt install meson libsystemd-dev pkg-config ninja-build git libdbus-1-dev libinih-dev")
 		cloneFeralGamemode("ubuntu")
 	else:
 		print("wrong distro")
