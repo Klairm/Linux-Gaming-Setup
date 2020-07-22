@@ -65,7 +65,7 @@ def GOverlwMango(dist):
 		print(colored.green("Updating packages"))
 		os.system("sudo pacman -Sy")
 		print(colored.green("Enabling multilib"))
-		subprocess.call("sudo","python3","enableMultilib.py","program")
+		os.system("sudo python3 enableMultilib.py program")
 
 		print(colored.green("Installing GOverlay, optional and MangoHUD"))
 		# GOverlay
