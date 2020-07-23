@@ -151,13 +151,12 @@ def mHUDGOInst():
 	
 def protonGE(dist):	
 	home = os.popen("echo ~/").read()
-	steamFolder = "{}.steam/root/compatibilitytools.d/".format(home)
-	flatpakSteamFolder = "{}.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/".format(home)
+	steamFolder = "{}.steam/root/compatibilitytools.d/".format(home.split("\n"))
+	flatpakSteamFolder = "{}.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/".format(home.split("\n"))
 	
 
 	#FIXME: Optimize this another if hell
-	print(os.path.exists("{}.steam/root/".format(home)) != True and os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)) != True)
-	if (not os.path.exists("{}.steam/root/".format(home))) and  (not os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home))):
+	if not os.path.exists("{}.steam/root/".format(home.split("\n"))) and  not os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home.split("\n"))):
 		op = input(print("Steam needs to be installed for this, do you want to install Steam? [Y/N] -> "))
 		if op in CONFIRM:
 			Steam(dist)
@@ -168,7 +167,7 @@ def protonGE(dist):
 			print(colored.red("Installation cancelled"))
 		else:
 			print("Wrong option!")
-	elif os.path.exists("{}.steam/root/".format(home)):
+	elif os.path.exists("{}.steam/root/".format(home.split("\n"))):
 		print(colored.green("Detected steam installation folder on ~/.steam/"))
 		if os.path.exists(steamFolder):
 			print(colored.green("compatibilitytools.d folder detected under ~/.steam/root/"))
@@ -177,7 +176,7 @@ def protonGE(dist):
 				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
 				os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
 		os.chdir(steamFolder)
-	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)):
+	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home.split("\n"))):
 		print(colored.green("Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
 		if os.path.exists(flatpakSteamFolder):
 			print.colored.green("compatibilitytools.d folder detected under ~/.var/app/com.valvesoftware.Steam/data/Steam/")
