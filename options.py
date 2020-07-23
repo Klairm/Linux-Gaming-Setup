@@ -14,7 +14,7 @@ def disElec(situation):
 				if situation == "drivers":
 					br.brandSelUbuntu()
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("ubuntu")
@@ -27,6 +27,8 @@ def disElec(situation):
 					elif prgm == 5:
 						pr.feralGamemode("ubuntu")
 					elif prgm == 6:
+						pr.protonGE("ubuntu")
+					elif prgrm == 7:
 						break
 					else:
 						print("Wrong option!")
@@ -44,7 +46,7 @@ def disElec(situation):
 					if op == 'Y' or op == 'y':
 						os.system("sudo python3 enableMultilib.py drivers")
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						os.system("sudo enableMultilib.py program")
@@ -58,18 +60,20 @@ def disElec(situation):
 					elif prgm == 5:
 						pr.feralGamemode("arch")
 					elif prgrm == 6:
+						pr.protonGE("arch")
+					elif prgrm == 7:
 						break
 					else:
 						print("Wrong option!")
 
-			# Dpian / full-debian based installer
+			# Debian / full-debian based installer
 
 			elif distro == 3:
 				if situation == "drivers":
 					print(colored.red("FIXME: Add drivers installer for Debian"))
 
 				elif situation == "programs":
-					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
+					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Back"))
 					prgm = int(input("Select an option -> "))
 					if prgm == 1:
 						pr.WINE("debian")
@@ -82,6 +86,8 @@ def disElec(situation):
 					elif prgm == 5:
 						pr.feralGamemode("ubuntu")
 					elif prgm == 6:
+						pr.protonGE("ubuntu")
+					elif prgrm == 7:
 						break
 					else:
 						print("Wrong option!")
