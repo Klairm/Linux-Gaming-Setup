@@ -169,14 +169,14 @@ def protonGE(dist):
 			print("Wrong option!")
 	elif os.path.exists("{}.steam/root/".format(home)):
 		print(colored.green("Detected steam installation folder on ~/.steam/"))
-		if os.path.exists(steamCompatiiblityFolder):
+		if os.path.exists(steamFolder):
 			print(colored.green("compatibilitytools.d folder detected under ~/.steam/root/"))
 		else:
 			if os.WEXITSTATUS(os.system("mkdir ~/.steam/root/compatibilitytools.d/")) == 126:
 				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
 				os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
 
-		compatFolder = steamCompatiiblityFolder
+		 os.chdir(steamFolder)
 	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)):
 		print(colored.green("Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
 		if os.path.exists(flatpakSteamFolder):
@@ -185,10 +185,9 @@ def protonGE(dist):
 			if os.WEXITSTATUS(os.system("mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")) == 126:
 				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
 				os.system("sudo mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")
-		
-		compatFolder = flatpakSteamFolder
+
+		os.chdir(flatpakSteamFolder)
 	
-	os.chdir(compatFolder)
 	protonGeTarball = downloadTarball("GloriousEggroll","proton-ge-custom",0)
 	if os.WEXITSTATUS(os.system("tar -xf {}".format(protonGeTarball))) != 0:
 		sys.exit(colored.red("Cannot extract the tarball"))	
