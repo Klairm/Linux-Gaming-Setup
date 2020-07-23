@@ -154,7 +154,7 @@ def protonGE(dist):
 	steamFolder = "~/.steam/root/compatibilitytools.d/"
 	flatpakSteamFolder = "~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/"
 	#FIXME: Optimize this another if hell
-	if !os.path.exists("~/.steam/root/") and !os.path.exists("~/.var/app/com.valvesoftware.Steam/"):
+	if os.path.exists("~/.steam/root/") != True and os.path.exists("~/.var/app/com.valvesoftware.Steam/") != True:
 		op = input(print("Steam needs to be installed for this, do you want to install Steam? [Y/N] -> "))
 		if op in CONFIRM:
 			Steam(dist)

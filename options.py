@@ -28,7 +28,7 @@ def disElec(situation):
 						pr.feralGamemode("ubuntu")
 					elif prgm == 6:
 						pr.protonGE("ubuntu")
-					elif prgrm == 7:
+					elif prgm == 7:
 						break
 					else:
 						print("Wrong option!")
@@ -59,9 +59,9 @@ def disElec(situation):
 						pr.Steam("arch")
 					elif prgm == 5:
 						pr.feralGamemode("arch")
-					elif prgrm == 6:
+					elif prgm == 6:
 						pr.protonGE("arch")
-					elif prgrm == 7:
+					elif prgm == 7:
 						break
 					else:
 						print("Wrong option!")
@@ -87,7 +87,7 @@ def disElec(situation):
 						pr.feralGamemode("ubuntu")
 					elif prgm == 6:
 						pr.protonGE("ubuntu")
-					elif prgrm == 7:
+					elif prgm == 7:
 						break
 					else:
 						print("Wrong option!")
