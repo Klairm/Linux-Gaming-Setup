@@ -156,7 +156,8 @@ def protonGE(dist):
 	
 
 	#FIXME: Optimize this another if hell
-	if os.path.exists("{}.steam/root/".format(home)) != True and os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)) != True:
+	print(os.path.exists("{}.steam/root/".format(home)) != True and os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)) != True)
+	if (not os.path.exists("{}.steam/root/".format(home))) and  (not os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home))):
 		op = input(print("Steam needs to be installed for this, do you want to install Steam? [Y/N] -> "))
 		if op in CONFIRM:
 			Steam(dist)
