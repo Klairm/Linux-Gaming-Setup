@@ -150,9 +150,10 @@ def mHUDGOInst():
 		print("GOverlay download MangoHud or can't locate it")
 	
 def protonGE(dist):	
+	home = os.popen("echo ~/").read()
 	steamFolder = "{}.steam/root/compatibilitytools.d/".format(home)
 	flatpakSteamFolder = "{}.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/".format(home)
-	home = os.popen("echo ~/").read()
+	
 
 	#FIXME: Optimize this another if hell
 	if os.path.exists("{}.steam/root/".format(home)) != True and os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)) != True:
