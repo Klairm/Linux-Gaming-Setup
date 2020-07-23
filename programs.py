@@ -150,10 +150,12 @@ def mHUDGOInst():
 		print("GOverlay download MangoHud or can't locate it")
 	
 def protonGE(dist):	
-	steamFolder = "~/.steam/root/compatibilitytools.d/"
-	flatpakSteamFolder = "~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/"
+	steamFolder = "{}.steam/root/compatibilitytools.d/".format(home)
+	flatpakSteamFolder = "{}.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/".format(home)
+	home = os.popen("echo ~/").read()
+
 	#FIXME: Optimize this another if hell
-	if os.path.exists("~/.steam/root/") != True and os.path.exists("~/.var/app/com.valvesoftware.Steam/") != True:
+	if os.path.exists("{}.steam/root/".format(home)) != True and os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)) != True:
 		op = input(print("Steam needs to be installed for this, do you want to install Steam? [Y/N] -> "))
 		if op in CONFIRM:
 			Steam(dist)
@@ -164,7 +166,7 @@ def protonGE(dist):
 			print(colored.red("Installation cancelled"))
 		else:
 			print("Wrong option!")
-	elif os.path.exists("~/.steam/root/"):
+	elif os.path.exists("{}.steam/root/".format(home)):
 		print(colored.green("Detected steam installation folder on ~/.steam/"))
 		if os.path.exists(steamCompatiiblityFolder):
 			print(colored.green("compatibilitytools.d folder detected under ~/.steam/root/"))
@@ -174,7 +176,7 @@ def protonGE(dist):
 				os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
 
 		compatFolder = steamCompatiiblityFolder
-	elif os.path.exists("~/.var/app/com.valvesoftware.Steam/")	:
+	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)):
 		print(colored.green("Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
 		if os.path.exists(flatpakSteamFolder):
 			print.colored.green("compatibilitytools.d folder detected under ~/.var/app/com.valvesoftware.Steam/data/Steam/")
