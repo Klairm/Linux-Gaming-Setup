@@ -123,7 +123,7 @@ def mHUDGOInst():
 		print("Cannot download MangoHud or can't locate it")
 	if os.path.isfile("/usr/bin/goverlay"):
 		print(colored.green("GOverlay already installed, updating GOverlay..."))
-		os.rm("/usr/bin/goverlay")
+		os.remove("/usr/bin/goverlay")
 		if os.path.exists("./GOverlay"):
 			os.system("rm -rf ./GOverlay")
 			os.mkdir("GOverlay")
@@ -192,7 +192,7 @@ def protonGE(dist):
 		sys.exit(colored.red("Cannot extract the tarball"))	
 	else:
 		print(colored.green("Tarball extracted succesfully, ProtonGE is now installed, for enable it on Steam, see: https://github.com/GloriousEggroll/proton-ge-custom/#enabling"))
-		os.rm(protonGeTarball)
+		os.remove(protonGeTarball)
 		
 def downloadTarball(username,repository,index):
 	# Download the latest releas tarball and return the name of it.
