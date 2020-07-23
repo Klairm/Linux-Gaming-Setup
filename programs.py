@@ -157,6 +157,9 @@ def protonGE(dist):
 		op = input(print("Steam needs to be installed for this, do you want to install Steam? [Y/N] -> "))
 		if op in CONFIRM:
 			Steam(dist)
+			print("It is needed to open Steam one time for create the folders, opening steam...")
+			os.system("steam")
+			protonGE(dist)
 		elif op in DENY:
 			print(colored.red("Installation cancelled"))
 		else:
