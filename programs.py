@@ -118,7 +118,7 @@ def mHUDGOInst():
 				os.system("./mangohud-setup.sh install")
 			if os.path.isfile("/usr/bin/mangohud"):
 				print(colored.green("MangoHUD installed succesfully"))
-				break
+				
 	else:
 		print("Cannot download MangoHud or can't locate it")
 	if os.path.isfile("/usr/bin/goverlay"):
@@ -144,7 +144,6 @@ def mHUDGOInst():
 
 			if os.path.isfile("/usr/bin/goverlay"):
 				print(colored.green("GOverlay installed succesfully"))
-				break
 			else:
 				print("goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
 	else:
@@ -160,7 +159,6 @@ def protonGE(dist):
 			Steam(dist)
 		elif op in DENY:
 			print(colored.red("Installation cancelled"))
-			break
 		else:
 			print("Wrong option!")
 	elif os.path.exists("~/.steam/root/"):
