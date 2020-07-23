@@ -175,7 +175,7 @@ def protonGE(dist):
 			if os.WEXITSTATUS(os.system("mkdir ~/.steam/root/compatibilitytools.d/")) == 126:
 				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
 				os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
-		os.chdir(steamFolder)
+		compatFolder = steamFolder
 	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home.strip("\n"))):
 		print(colored.green("Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
 		if os.path.exists(flatpakSteamFolder):
@@ -185,18 +185,26 @@ def protonGE(dist):
 				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
 				os.system("sudo mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")
 
-		os.chdir(flatpakSteamFolder)
+		compatFolder = flatpakSteamFolder
 	
+	os.chdir(compatFolder)
 	protonGeTarball = downloadTarball("GloriousEggroll","proton-ge-custom",0)
 	if os.WEXITSTATUS(os.system("tar -xf {}".format(protonGeTarball))) != 0:
 		sys.exit(colored.red("Cannot extract the tarball"))	
 	else:
 		print(colored.green("Tarball extracted succesfully, ProtonGE is now installed, for enable it on Steam, see: https://github.com/GloriousEggroll/proton-ge-custom/#enabling"))
-		os.remove(protonGeTarball)
+		print(colored.green("Cleaning the tar file..."))
+		if os.WEXITSTATUS(os.system("rm {}".format(protonGeTarball))) !=0:
+			print(colored.red("Cannot clean the tar file, checking the correct directory"))
+			if os.getcwd()+"/" != compatFolder:
+				os.chdir(compatFolder)	
+			print(colored.red("Cannot clean the tar file, trying with sudo permissions..."))
+			if os.WEXITSTATUS(os.system("sudo rm {}".format(protonGeTarball))) != 0:
+				print(colored.red("Cannot clean the tar file, you can delete it manually on {}".format(compatFolder)))
 		
 def downloadTarball(username,repository,index):
 	# Download the latest releas tarball and return the name of it.
-	# FIXME: Handle errors from curl
+	# FIXME: Handle errors from curl and wget
 	tarball = os.popen("curl -sL https://api.github.com/repos/{}/{}/releases/latest | jq -r '.assets[{}].browser_download_url'".format(username,repository,index)).read()
 	os.system("wget {}".format(tarball))
 	return tarball.split("/")[8]
@@ -247,4 +255,5 @@ def cloneFeralGamemode(dist):
 		os.system("git checkout 1.5.1")
 		os.system("sudo chmod +x bootstrap.sh")
 		os.system("./bootstrap.sh")
+
 
