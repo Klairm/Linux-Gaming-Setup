@@ -175,8 +175,7 @@ def protonGE(dist):
 			if os.WEXITSTATUS(os.system("mkdir ~/.steam/root/compatibilitytools.d/")) == 126:
 				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
 				os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
-
-		 os.chdir(steamFolder)
+		os.chdir(steamFolder)
 	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home)):
 		print(colored.green("Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
 		if os.path.exists(flatpakSteamFolder):
