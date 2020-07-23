@@ -18,6 +18,8 @@ You can install this programs:
 
 	- Feral GameMode: a daemon/lib combo for Linux that allows games to request a set of optimisations be temporarily applied to the host OS and/or a game process. https://github.com/FeralInteractive/gamemode
 
+	- ProtonGE: A custom build from Proton with some fixes for games. https://github.com/GloriousEggroll/proton-ge-custom/
+
 More will be added in a future
 
 
