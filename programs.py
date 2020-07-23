@@ -2,6 +2,9 @@ from clint.textui import colored
 import os, distro,sys
 import addRepo
 
+CONFIRM = ["y","Y"]
+DENY = ["n","N"]
+
 def WINE(dist):
 	if dist == "arch":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
@@ -19,24 +22,18 @@ def WINE(dist):
 		os.system("sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ {} main'".format(codename))
 		print(colored.green("Updating packages, installing wine and wine dependencies"))
 		os.system("sudo apt-get update")
-		os.system("sudo apt-get install --install-recommends wine-stable")
-		# FIXME: Add error handler for this
-		op = input("Did you received this error? -> The following packages have unmet dependencies [Y/N] -> ")
-		if op == "Y" or op == "y":
-			print(colored.green("Executing alternative command for solve that error"))
+		if os.WEXITSTATUS(os.system("sudo apt-get install --install-recommends wine-stable")) > 0:
+			print(colored.green("Executing alternative command for solve a detected error"))
 			os.system("sudo apt-get install --install-recommends winehq-stable wine-stable wine-stable-i386 wine-stable-amd64")
-		elif op == "N" or op == "n":
-			print(colored.green("Proceeding to continue"))
-		else:
-			print(colored.red("Wrong option"))
-				
 		os.system("sudo apt-get install libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libxml2:i386 libasound2-plugins:i386 libsdl2-2.0-0:i386 libfreetype6:i386 libdbus-1-3:i386 libsqlite3-0:i386")
 		
 	elif dist == "debian":
 		print('''WINE allows you to run Windows software in other OS, like Linux.''')
 		print(colored.green("Enabling 32-bit architecture"))
 		os.system("sudo dpkg --add-architecture i386")
-		os.system("wget -nc https://dl.winehq.org/wine-builds/Release.key")
+		if os.WEXITSTATUS(os.system("wget -nc https://dl.winehq.org/wine-builds/Release.key")) == 127:
+			print(colored.red("Wget is not installed, proceeding to install it..."))
+			os.system("sudo apt-get install wget")
 		os.system("sudo apt-key add Release.key")
 		addRepo.debianRepo()
 	else:
@@ -53,7 +50,9 @@ def Lutris(dist):
 		os.system("sudo apt-get install lutris")
 	elif dist == "debian":
 		os.system('echo "deb http://download.opensuse.org/repositories/home:/strycore/Debian_10/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list')
-		os.system("wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_10/Release.key -O- | sudo apt-key add -")
+		if os.WEXITSTATUS(os.system("wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_10/Release.key -O- | sudo apt-key add -")) == 127:
+			print(colored.red("Wget is not installed, proceeding to install it..."))
+			os.system("sudo apt-get install wget")
 		os.system("sudo apt-get update")
 		os.system("sudo apt-get install lutris")
 	else:
@@ -67,9 +66,9 @@ def GOverlwMango(dist):
 		print(colored.green("Enabling multilib"))
 		os.system("sudo python3 enableMultilib.py program")
 
-		print(colored.green("Installing GOverlay, optional and MangoHUD"))
-		# GOverlay
-
+		print(colored.green("Installing GOverlay,and MangoHUD"))  #FIXME: vkBasalt required?
+		
+		# GOverlay and yay installation
 		if os.WEXITSTATUS(os.system("yay goverlay")) == 127:
 			goverlay = input(print("Seems like you don't have yay installed (it's an AUR helper for install packages from the AUR), proceed to install yay? [Y/N] ->"))
 			if goverlay == "y" or goverlay == "Y":
@@ -100,15 +99,13 @@ def GOverlwMango(dist):
 
 
 def mHUDGOInst():
-	confirm = ["y","Y"]
-	deny = ["n","N"]
 	# Check if curl and jq is installed
 	if os.WEXITSTATUS(os.system("jq")) == 127:
 		print("jq is not installed, make sure to run the setup.sh script")
 		op = input(print("Proceed to install jq,curl and wget? [Y/N] -> "))
-		if op in confirm:
+		if op in CONFIRM:
 			os.system("sudo apt install jq curl wget")
-		elif op in deny:
+		elif op in DENY:
 			sys.exit("Installation cancelled")
 	mangoTarball = downloadTarball("flightlessmangom","MangoHud",2)
 	if os.path.isfile(mangoTarball.split()[0]):
@@ -121,11 +118,12 @@ def mHUDGOInst():
 				os.system("./mangohud-setup.sh install")
 			if os.path.isfile("/usr/bin/mangohud"):
 				print(colored.green("MangoHUD installed succesfully"))
+				
 	else:
 		print("Cannot download MangoHud or can't locate it")
 	if os.path.isfile("/usr/bin/goverlay"):
 		print(colored.green("GOverlay already installed, updating GOverlay..."))
-		os.rm("/usr/bin/goverlay")
+		os.remove("/usr/bin/goverlay")
 		if os.path.exists("./GOverlay"):
 			os.system("rm -rf ./GOverlay")
 			os.mkdir("GOverlay")
@@ -151,10 +149,62 @@ def mHUDGOInst():
 	else:
 		print("GOverlay download MangoHud or can't locate it")
 	
+def protonGE(dist):	
+	home = os.popen("echo ~/").read()
+	steamFolder = "{}.steam/root/compatibilitytools.d/".format(home.strip("\n"))
+	flatpakSteamFolder = "{}.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/".format(home.strip("\n"))
+	
 
+	#FIXME: Optimize this another if hell
+	if not os.path.exists("{}.steam/root/".format(home.strip("\n"))) and  not os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home.strip("\n"))):
+		op = input(print("Steam needs to be installed for this, do you want to install Steam? [Y/N] -> "))
+		if op in CONFIRM:
+			Steam(dist)
+			print("It is needed to open Steam one time for create the folders, opening steam...")
+			os.system("steam")
+			protonGE(dist)
+		elif op in DENY:
+			print(colored.red("Installation cancelled"))
+		else:
+			print("Wrong option!")
+	elif os.path.exists("{}.steam/root/".format(home.strip("\n"))):
+		print(colored.green("Detected steam installation folder on ~/.steam/"))
+		if os.path.exists(steamFolder):
+			print(colored.green("compatibilitytools.d folder detected under ~/.steam/root/"))
+		else:
+			if os.WEXITSTATUS(os.system("mkdir ~/.steam/root/compatibilitytools.d/")) == 126:
+				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
+				os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
+		compatFolder = steamFolder
+	elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home.strip("\n"))):
+		print(colored.green("Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
+		if os.path.exists(flatpakSteamFolder):
+			print.colored.green("compatibilitytools.d folder detected under ~/.var/app/com.valvesoftware.Steam/data/Steam/")
+		else:
+			if os.WEXITSTATUS(os.system("mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")) == 126:
+				print(colored.red("Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
+				os.system("sudo mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")
+
+		compatFolder = flatpakSteamFolder
+	
+	os.chdir(compatFolder)
+	protonGeTarball = downloadTarball("GloriousEggroll","proton-ge-custom",0)
+	if os.WEXITSTATUS(os.system("tar -xf {}".format(protonGeTarball))) != 0:
+		sys.exit(colored.red("Cannot extract the tarball"))	
+	else:
+		print(colored.green("Tarball extracted succesfully, ProtonGE is now installed, for enable it on Steam, see: https://github.com/GloriousEggroll/proton-ge-custom/#enabling"))
+		print(colored.green("Cleaning the tar file..."))
+		if os.WEXITSTATUS(os.system("rm {}".format(protonGeTarball))) !=0:
+			print(colored.red("Cannot clean the tar file, checking the correct directory"))
+			if os.getcwd()+"/" != compatFolder:
+				os.chdir(compatFolder)	
+			print(colored.red("Cannot clean the tar file, trying with sudo permissions..."))
+			if os.WEXITSTATUS(os.system("sudo rm {}".format(protonGeTarball))) != 0:
+				print(colored.red("Cannot clean the tar file, you can delete it manually on {}".format(compatFolder)))
+		
 def downloadTarball(username,repository,index):
 	# Download the latest releas tarball and return the name of it.
-	# FIXME: Handle errors from curl
+	# FIXME: Handle errors from curl and wget
 	tarball = os.popen("curl -sL https://api.github.com/repos/{}/{}/releases/latest | jq -r '.assets[{}].browser_download_url'".format(username,repository,index)).read()
 	os.system("wget {}".format(tarball))
 	return tarball.split("/")[8]
@@ -205,4 +255,5 @@ def cloneFeralGamemode(dist):
 		os.system("git checkout 1.5.1")
 		os.system("sudo chmod +x bootstrap.sh")
 		os.system("./bootstrap.sh")
+
 
