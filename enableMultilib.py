@@ -28,9 +28,14 @@ def pacmanConf(situation):
 					Seems like multilib it's already uncommented, to be sure you can check it on /etc/pacman.conf
 					You can check this site for know more about enabling multilib:
 					 https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html'''))
+				if situation == "drivers":
+					br.brandSelArch()
 				break
+
 			else:
 				print("Either multilib is already enabled, or the script can't find it on your /etc/pacman.conf file\n You can check this site for know more about enabling multilib:\n https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html")
+				if situation == "drivers":
+					br.brandSelArch()
 				break
 
 		with open('/etc/pacman.conf', 'w') as file:
