@@ -42,7 +42,7 @@ def disElec(situation):
 						'''))
 					op = input("Do you want to continue? [Y/N] -> ")
 					if op == 'Y' or op == 'y':
-						os.system("sudo enableMultilib.py drivers")
+						os.system("sudo python3 enableMultilib.py drivers")
 				elif situation == "programs":
 					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Back"))
 					prgm = int(input("Select an option -> "))
