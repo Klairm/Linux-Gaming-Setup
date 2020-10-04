@@ -103,7 +103,7 @@ def brandSelArch():
 				Broadwell, Haswell and Ivy Bridge only offer partial support, which may not work with a lot of games. 
 				Sandy Bridge and older lack any Vulkan support whatsoever.
 				'''))
-			opI = input("Do you want to continue? [Y/N] -> ")
+			op = input("Do you want to continue? [Y/N] -> ")
 			if op == 'Y' or op == 'y':
 				os.system("sudo pacman -S lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader --needed")
 			elif op == 'N' or op == 'n':
