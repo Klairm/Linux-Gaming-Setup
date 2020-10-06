@@ -107,7 +107,7 @@ def mHUDGOInst():
 			os.system("sudo apt install jq curl wget")
 		elif op in DENY:
 			sys.exit("Installation cancelled")
-	mangoTarball = downloadTarball("flightlessmangom","MangoHud",2)
+	mangoTarball = downloadTarball("flightlessmango","MangoHud",2)
 	if os.path.isfile(mangoTarball.split()[0]):
 		if os.WEXITSTATUS(os.system("tar -xf {}".format(mangoTarball))) == 2:
 			sys.exit("Fatal error trying to extract the tarball")
