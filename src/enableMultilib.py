@@ -1,5 +1,5 @@
 import os, sys
-from src import brands as br
+from src import drivers as drv
 
 
 def pacmanConf(situation):
@@ -19,7 +19,7 @@ def pacmanConf(situation):
 				data[i+2] = "Include = /etc/pacman.d/mirrorlist\n"
 				os.system("sudo pacman -Syu")
 				if situation == "drivers":
-					br.brandSelArch()
+					drv.brandSelArch()
 				elif situation == "program":
 					pass
 					
@@ -29,13 +29,13 @@ def pacmanConf(situation):
 					You can check this site for know more about enabling multilib:
 					 https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html'''))
 				if situation == "drivers":
-					br.brandSelArch()
+					drv.brandSelArch()
 				break
 
 			else:
 				print("Either multilib is already enabled, or the script can't find it on your /etc/pacman.conf file\n You can check this site for know more about enabling multilib:\n https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html")
 				if situation == "drivers":
-					br.brandSelArch()
+					drv.brandSelArch()
 				break
 
 		with open('/etc/pacman.conf', 'w') as file:

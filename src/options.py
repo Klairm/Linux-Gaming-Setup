@@ -1,5 +1,5 @@
 from clint.textui import colored
-from src import brands as br
+from src import drivers as drv
 from src import programs as pr
 import os, sys
 def disElec(situation):
@@ -12,7 +12,7 @@ def disElec(situation):
 			
 			if distro == 1:
 				if situation == "drivers":
-					br.brandSelUbuntu()
+					drv.brandSelUbuntu()
 				elif situation == "programs":
 					print(colored.green("\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Back"))
 					prgm = int(input("Select an option -> "))

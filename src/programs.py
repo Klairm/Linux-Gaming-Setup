@@ -64,7 +64,7 @@ def GOverlwMango(dist):
 		print(colored.green("Updating packages"))
 		os.system("sudo pacman -Sy")
 		print(colored.green("Enabling multilib"))
-		os.system("sudo python3 enableMultilib.py program")
+		os.system("sudo python3 src/enableMultilib.py program")
 
 		print(colored.green("Installing GOverlay,and MangoHUD"))  #FIXME: vkBasalt required?
 		
@@ -211,7 +211,7 @@ def downloadTarball(username,repository,index):
 
 def Steam(dist):
 	if dist == "arch":
-		os.system("sudo python3 enableMultilib.py program")
+		os.system("sudo python3 src/enableMultilib.py program")
 		os.system("sudo pacman -S steam --needed")
 	elif dist == "ubuntu":
 		os.system("sudo apt install steam-installer")
