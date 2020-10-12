@@ -2,7 +2,7 @@
 
 from 	pyfiglet import Figlet
 from clint.textui import colored
-import options as opt
+from src import options as opt
 import os, platform
 f = Figlet(font='speed')
 print(colored.yellow(f.renderText('''
