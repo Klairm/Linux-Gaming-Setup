@@ -188,7 +188,7 @@ def protonGE(dist):
 		compatFolder = flatpakSteamFolder
 	
 	os.chdir(compatFolder)
-	protonGeTarball = downloadTarball("GloriousEggroll","proton-ge-custom",0)
+	protonGeTarball = downloadTarball("GloriousEggroll","proton-ge-custom",1)
 	if os.WEXITSTATUS(os.system("tar -xf {}".format(protonGeTarball))) != 0:
 		sys.exit(colored.red("Cannot extract the tarball"))	
 	else:
