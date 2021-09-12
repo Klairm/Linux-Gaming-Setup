@@ -1,10 +1,14 @@
-import distro, os, sys
+import distro
+import os
+import sys
+
 from clint.textui import colored
 
-def debianRepo():
+
+def debian_repo():
 	try:
-		debCodename = distro.linux_distribution()[2].lower() # Codename for distro, ie: buster, jessie...
-		repo = "deb https://dl.winehq.org/wine-builds/debian/ {} main\n".format(debCodename) # Repository for wine
+		deb_codename = distro.linux_distribution()[2].lower()  # Codename for distro, ie: buster, jessie...
+		repo = "deb https://dl.winehq.org/wine-builds/debian/ {} main\n".format(deb_codename)  # Repository for wine
 	
 		# Check if the repo is already on the source.list file , if not add it
 		if os.path.isfile('/etc/apt/sources.list.d/wineGS.list'):
