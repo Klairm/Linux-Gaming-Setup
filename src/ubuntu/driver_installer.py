@@ -1,9 +1,11 @@
 from clint.textui import colored
 import distro
-import os
 
 
 class DriverInstaller:
+    def __init__(self, apt):
+        self.apt = apt
+
     def install(self):
         while True:
             print(colored.red("WARNING: Choose your correct brand of your graphics card"))
@@ -11,7 +13,6 @@ class DriverInstaller:
             brand = int(input("Select an option -> "))
 
             if brand == 1:
-
                 print(colored.red('''
                 WARNING: Make sure that your graphics card is compatible with the driver and is Vulkan capable, before installing: 
 
@@ -22,11 +23,12 @@ class DriverInstaller:
 
                 if op == 'Y' or op == 'y':
                     print(colored.red("Adding drivers repository and enabling 32 bits arch "))
-                    os.system("sudo add-apt-repository ppa:graphics-drivers/ppa")
-                    os.system("sudo dpkg --add-architecture i386")
+                    self.apt.add_architecture("i386")
+                    self.apt.add_repository("ppa:graphics-drivers/ppa")
+
                     print(colored.green("Installing the 440 driver"))
-                    os.system("sudo apt update")
-                    os.system("sudo apt install nvidia-driver-440 libnvidia-gl-440 libnvidia-gl-440:i386")
+                    self.apt.install(["nvidia-driver-440", "libnvidia-gl-440", "libnvidia-gl-440:i386"])
+
                     print("Reboot to apply changes")
                 elif op == 'N' or op == 'n':
                     break
@@ -52,18 +54,18 @@ class DriverInstaller:
                     if float(ver) >= 19.10:
                         print(colored.green(
                             f"Detected {ver[0]} {ver[1]}, installing support for 32 bit and vulkan support"))
-                        os.system("sudo dpkg --add-architecture i386")
-                        os.system("sudo apt install libgl1-mesa-dri:i386")
-                        os.system("sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386")
+                        self.apt.add_architecture("i386")
+                        self.apt.install(["libgl1-mesa-dri:i386", "mesa-vulkan-drivers", "mesa-vulkan-drivers:i386"])
+
                         print("Reboot to apply changes")
                     elif float(ver) == 18.04 or float(ver) == 18.10:
                         print(colored.green(
                             f"Detected {ver[0]} {ver[1]}, adding mesa repository, installing support for 32 bit and vulkan support"))
-                        os.system("sudo add-apt-repository ppa:kisak/kisak-mesa")
-                        os.system("sudo dpkg --add-architecture i386 ")
-                        os.system("sudo apt update && sudo apt upgrade")
-                        os.system("sudo apt install libgl1-mesa-glx:i386 libgl1-mesa-dri:i386")
-                        os.system("sudo apt install mesa-vulkan-drivers mesa-vulkan-drivers:i386")
+                        self.apt.add_architecture("i386")
+                        self.apt.add_repository("ppa:kisak/kisak-mesa")
+                        self.apt.upgrade()
+                        self.apt.install(["libgl1-mesa-glx:i386", "libgl1-mesa-dri:i386", "mesa-vulkan-drivers", "mesa-vulkan-drivers:i386"])
+
                         print("Reboot to apply changes")
                     elif float(ver) < 18.04:
                         print(colored.red("Only Ubuntu 18.04 and higher is supported for AMD and Intel graphics."))

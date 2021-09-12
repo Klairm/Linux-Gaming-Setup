@@ -1,11 +1,11 @@
-import os
-
 from clint.textui import colored
 
 
 class LutrisInstaller:
+    def __init__(self, apt):
+        self.apt = apt
+
     def install(self):
         print(colored.green("Adding lutris repository"))
-        os.system("sudo add-apt-repository ppa:lutris-team/lutris")
-        os.system("sudo apt-get update")
-        os.system("sudo apt-get install lutris")
+        self.apt.add_repository("ppa:lutris-team/lutris")
+        self.apt.install(["lutris"])

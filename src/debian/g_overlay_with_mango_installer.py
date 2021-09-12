@@ -9,6 +9,9 @@ DENY = ["n", "N"]
 
 
 class GOverlayWithMangoInstaller:
+    def __init__(self, apt):
+        self.apt = apt
+
     def install(self):
         # Check if curl and jq is installed
         if os.WEXITSTATUS(os.system("jq")) == 127:
@@ -16,7 +19,7 @@ class GOverlayWithMangoInstaller:
             op = input(print("Proceed to install jq,curl and wget? [Y/N] -> "))
 
             if op in CONFIRM:
-                os.system("sudo apt install jq curl wget")
+                self.apt.install(["jq", "curl", "wget"])
             elif op in DENY:
                 sys.exit("Installation cancelled")
 

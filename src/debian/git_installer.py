@@ -1,6 +1,6 @@
-import os
-
-
 class GitInstaller:
+    def __init__(self, apt):
+        self.apt = apt
+
     def install(self):
-        os.system("sudo apt install git")
+        self.apt.install(["git"])
