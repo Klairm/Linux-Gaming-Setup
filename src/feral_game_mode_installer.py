@@ -20,11 +20,12 @@ class FeralGameModeInstaller:
                 "Cannot find Git, Git is needed for install some programs, proceed to install Git? [Y/N]")))
             if git == "y" or git == "Y":
                 self.factory.git_installer().install()
-                os.system("git clone https://github.com/FeralInteractive/gamemode.git")
+                os.system(
+                    "git clone https://github.com/FeralInteractive/gamemode.git")
             elif git == "n" or git == "N":
                 sys.exit("Installation cancelled")
 
         os.chdir("gamemode")
-        os.system("git checkout 1.5.1")
+        os.system("git checkout 1.6.1")
         os.system("sudo chmod +x bootstrap.sh")
         os.system("./bootstrap.sh")
