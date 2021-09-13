@@ -10,4 +10,4 @@ class FeralGameModeInstaller():
         if int(distro.major_version()) >= 19:
             self.apt.install(["gamemode"])
         elif int(distro.major_version() <= 18):
-            FeralGameModeInstaller(Base)
+            pass
