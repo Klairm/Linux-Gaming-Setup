@@ -1,18 +1,19 @@
-import os, sys
+import os
+import sys
+
 from src import drivers as drv
 
 
-def pacmanConf(situation):
-	
+def pacman_conf(situation):
 	try:
 		with open('/etc/pacman.conf', 'r') as file:
-		    data = file.readlines()
-		    dataBac = file.readlines()
+			data = file.readlines()
+			data_bac = file.readlines()
+
 		with open('/etc/pacman.conf.backupFromGamingSetup', 'w') as file:
-		    file.writelines(dataBac)
+			file.writelines(data_bac)
 
 		for i, j in enumerate(data):
-			
 			if j == "#[multilib]\n":
 				data[i] = "[multilib]\n"
 				data[i+1] = "SigLevel = PackageRequired\n"
@@ -44,4 +45,5 @@ def pacmanConf(situation):
 	except IOError:
 		print("Something went wrong trying to open the file /etc/pacman.conf")
 
-pacmanConf(sys.argv[1])
+
+pacman_conf(sys.argv[1])
