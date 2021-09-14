@@ -4,7 +4,7 @@ from src.arch.g_overlay_with_mango_installer import GOverlayWithMangoInstaller
 from src.arch.git_installer import GitInstaller
 from src.arch.lutris_installer import LutrisInstaller
 from src.program_installer import ProgramInstaller
-from src.proton_ge_installer import ProtonGeInstaller
+from src.utils.proton_ge_installer import ProtonGeInstaller
 from src.arch.steam_installer import SteamInstaller
 from src.arch.wine_installer import WineInstaller
 

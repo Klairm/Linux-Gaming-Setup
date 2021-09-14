@@ -2,7 +2,7 @@ import os
 import sys
 
 from clint.textui import colored
-from src.helpers import download_tarball
+from src.utils.helpers import download_tarball
 
 CONFIRM = ["y", "Y"]
 DENY = ["n", "N"]
@@ -27,7 +27,8 @@ class GOverlayWithMangoInstaller:
         self.install_g_overlay()
 
     def install_mango(self):
-        mango_tarball = download_tarball("flightlessmango", "MangoHud", 2)
+        mango_tarball = download_tarball(
+            "flightlessmango", "MangoHud", "tar.gz")
 
         if os.path.isfile(mango_tarball.split()[0]):
             if os.WEXITSTATUS(os.system("tar -xf {}".format(mango_tarball))) == 2:
@@ -59,7 +60,8 @@ class GOverlayWithMangoInstaller:
 
         os.chdir("./GOverlay")
 
-        goverlay_tarball = download_tarball("benjamimgois", "goverlay", 0)
+        goverlay_tarball = download_tarball(
+            "benjamimgois", "goverlay", "tar.xz")
 
         if os.path.isfile(goverlay_tarball.split()[0]):
             if os.WEXITSTATUS(os.system("tar -xf {}".format(goverlay_tarball))) == 2:
@@ -68,12 +70,14 @@ class GOverlayWithMangoInstaller:
                 os.system("chmod +x goverlay")
 
                 if os.WEXITSTATUS(os.system("mv goverlay /usr/bin/")) > 0:
-                    print("Error trying to move goverlay file to /us/bin/ executing command as root...")
+                    print(
+                        "Error trying to move goverlay file to /us/bin/ executing command as root...")
                     os.system("sudo mv goverlay /usr/bin/")
 
                 if os.path.isfile("/usr/bin/goverlay"):
                     print(colored.green("GOverlay installed succesfully"))
                 else:
-                    print("goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
+                    print(
+                        "goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
         else:
             print("GOverlay download MangoHud or can't locate it")
