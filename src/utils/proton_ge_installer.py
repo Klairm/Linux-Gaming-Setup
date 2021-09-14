@@ -69,8 +69,8 @@ class ProtonGeInstaller:
 
         os.chdir(compat_folder)
         proton_ge_tarball = download_tarball(
-            "GloriousEggroll", "proton-ge-custom", 1)
-
+            "GloriousEggroll", "proton-ge-custom")
+        proton_ge_tarball = proton_ge_tarball.split()[0].strip('""')
         if os.WEXITSTATUS(os.system("tar -xf {}".format(proton_ge_tarball))) != 0:
             sys.exit(colored.red("Cannot extract the tarball"))
         else:
