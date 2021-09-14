@@ -1,11 +1,11 @@
-from src.apt import Apt
+from src.utils.apt import Apt
 from src.debian.driver_installer import DriverInstaller
 from src.debian.feral_game_mode_installer import FeralGameModeInstaller
 from src.debian.g_overlay_with_mango_installer import GOverlayWithMangoInstaller
 from src.debian.git_installer import GitInstaller
 from src.debian.lutris_installer import LutrisInstaller
 from src.program_installer import ProgramInstaller
-from src.proton_ge_installer import ProtonGeInstaller
+from src.utils.proton_ge_installer import ProtonGeInstaller
 from src.debian.steam_installer import SteamInstaller
 from src.debian.wine_installer import WineInstaller
 

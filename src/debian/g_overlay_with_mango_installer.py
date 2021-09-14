@@ -2,8 +2,8 @@ import os
 import sys
 
 from clint.textui import colored
-from src.helpers import download_tarball
-
+from src.utils.helpers import download_tarball
+import distro
 CONFIRM = ["y", "Y"]
 DENY = ["n", "N"]
 
@@ -13,23 +13,34 @@ class GOverlayWithMangoInstaller:
         self.apt = apt
 
     def install(self):
-        # Check if curl and jq is installed
-        if os.WEXITSTATUS(os.system("jq")) == 127:
-            print("jq is not installed, make sure to run the setup.sh script")
-            op = input(print("Proceed to install jq,curl and wget? [Y/N] -> "))
+        if int(distro.major_version()) >= 11 and distro.id() == "debian":
+            self.apt.install(["mangohud", "goverlay"])
+        elif int(distro.major_version()) >= 20 and distro.id() == "ubuntu":
+            self.apt.add_repository("ppa:flexiondotorg/mangohud")
+            self.apt.update()
+            self.apt.install(["goverlay"])
+            self.install_mango()
+        else:
+            # Check if curl and jq is installed
+            if os.WEXITSTATUS(os.system("jq --version")) == 127:
+                print("jq is not installed, make sure to run the setup.sh script")
+                op = input(
+                    print("Proceed to install jq, curl and wget? [Y/N] -> "))
 
-            if op in CONFIRM:
-                self.apt.install(["jq", "curl", "wget"])
-            elif op in DENY:
-                sys.exit("Installation cancelled")
+                if op in CONFIRM:
+                    self.apt.install(["jq", "curl", "wget"])
+                elif op in DENY:
+                    sys.exit("Installation cancelled")
 
-        self.install_mango()
-        self.install_g_overlay()
+            self.install_mango()
+            self.install_g_overlay()
 
     def install_mango(self):
-        mango_tarball = download_tarball("flightlessmango", "MangoHud", 2)
+        mango_tarball = download_tarball(
+            "flightlessmango", "MangoHud")
+        mango_tarball = mango_tarball.split()[0].strip('""')
+        if os.path.isfile(mango_tarball):
 
-        if os.path.isfile(mango_tarball.split()[0]):
             if os.WEXITSTATUS(os.system("tar -xf {}".format(mango_tarball))) == 2:
                 sys.exit("Fatal error trying to extract the tarball")
             else:
@@ -43,7 +54,7 @@ class GOverlayWithMangoInstaller:
                     print(colored.green("MangoHUD installed succesfully"))
 
         else:
-            print("Cannot download MangoHud or can't locate it")
+            print(colored.red("Something went wrong locating MangoHUD"))
 
     def install_g_overlay(self):
         if os.path.isfile("/usr/bin/goverlay"):
@@ -59,21 +70,24 @@ class GOverlayWithMangoInstaller:
 
         os.chdir("./GOverlay")
 
-        goverlay_tarball = download_tarball("benjamimgois", "goverlay", 0)
-
-        if os.path.isfile(goverlay_tarball.split()[0]):
+        goverlay_tarball = download_tarball(
+            "benjamimgois", "goverlay")
+        goverlay_tarball = goverlay_tarball.split()[0].strip('""')
+        if os.path.isfile(goverlay_tarball):
             if os.WEXITSTATUS(os.system("tar -xf {}".format(goverlay_tarball))) == 2:
                 sys.exit("Fatal error trying to extract the tarball")
             else:
                 os.system("chmod +x goverlay")
 
                 if os.WEXITSTATUS(os.system("mv goverlay /usr/bin/")) > 0:
-                    print("Error trying to move goverlay file to /us/bin/ executing command as root...")
+                    print(
+                        "Error trying to move goverlay file to /us/bin/ executing command as root...")
                     os.system("sudo mv goverlay /usr/bin/")
 
                 if os.path.isfile("/usr/bin/goverlay"):
                     print(colored.green("GOverlay installed succesfully"))
                 else:
-                    print("goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
+                    print(
+                        "goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
         else:
-            print("GOverlay download MangoHud or can't locate it")
+            print(colored.red("Something went wrong locating GOverlay"))

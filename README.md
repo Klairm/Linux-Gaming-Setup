@@ -1,46 +1,32 @@
-# Linux-Gaming-Setup
-A python script which allow users to install drivers and programs of utility and be able to play games on Linux
+## Linux-Gaming-Setup
 
-- Drivers installer based on Lutris wiki https://github.com/lutris/lutris/wiki/Installing-drivers
+A python script which allow users to install drivers and programs of utility to play games on Linux
+
+Drivers installation based on [Lutris wiki](https://github.com/lutris/docs/blob/master/InstallingDrivers.md)
 
 With this script you can currently install drivers for Debian, Ubuntu and Arch, more distros will be added
 You can install this programs:
-	
-	- WINE: A program that allows execute Windows programs on Linux, for more info you can visit https://www.winehq.org/
-	
-	- Lutris: A gaming client for Linux, which allows you to install games and emulators without too much tweaking, you can visit https://lutris.net/about/ for more info
-
-	- Steam: A platform for buy and install games, also you can chat with your friends, install and share mods on the workshop and it has more features https://store.steampowered.com/about/
-	
-	- GOverlay: It's an GUI for manage Linux overlays, such as MangoHUD. https://github.com/benjamimgois/goverlay
-
-	- MangoHUD: A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU loads and more. https://github.com/flightlessmango/MangoHud
-
-	- Feral GameMode: a daemon/lib combo for Linux that allows games to request a set of optimisations be temporarily applied to the host OS and/or a game process. https://github.com/FeralInteractive/gamemode
-	
-	- ProtonGE: A custom build from Proton with some fixes for games. https://github.com/GloriousEggroll/proton-ge-custom/
+| Program | Description |
+| ------- | ----------- |
+| [WINE](https://www.winehq.org/) | A program that allows execute Windows programs on Linux |
+| [Lutris](https://github.com/lutris/lutris) | A gaming client for Linux, which allows you to install games and emulators without too much tweaking, you canvisit https://lutris.net/about/ for more info |
+| [Steam](https://store.steampowered.com/about/) | A platform for buy and install games, also you can chat with your friends, install and share mods on the workshop and it has more features |
+| [GOverlay](https://github.com/benjamimgois/goverlay) | It's an GUI for manage Linux overlays, such as MangoHUD |
+| [MangoHUD](https://github.com/flightlessmango/MangoHud) | A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU loads and more |
+| [Feral Gamemode](https://github.com/FeralInteractive/gamemode) | A daemon/lib combo for Linux that allows games to request a set of optimisations be temporarily applied to the host OS and/or a game process |
+| [ProtonGE](https://github.com/GloriousEggroll/proton-ge-custom/) | A custom build from Proton with some fixes for games. |
 
 More will be added in a future
 
+## Setup:
 
-# Usage ( for now ):
-- Give execution rights to setup.sh and execute it in order to install the dependencies
-```chmod +x setup.sh```
-- Execute the script and select your distro or distro-based
-```./setup.sh```
-- Now you can execute the python script
-```./GamingSetup.py```   or alternative  ``` python3 GamingSetup.py ```
+1. Give execution rights to `setup.sh` and execute it in order to install the dependencies:
+   `chmod +x setup.sh`
+2. Execute the script and select your distro or distro-based
+   `./setup.sh`
+3. Now you can execute the python script
+   `./GamingSetup.py` or alternative `python3 GamingSetup.py`
 
+### GUI Version
 
-
-# TO DO
-- Finish the project, ie: adding possible fedora support, Debian drivers installation,add more useful and essential programs...
-- Create error handler , for basics and common errors, as TypeError, etc...
-- Provide as an distributable file, ie: providing a way for install python dependencies automatically or with pyinstaller
-- Create a own GUI version
-- Create a bash version so no need to download any dependencies (?)
-
-# GUI Version
-
-In the repo of Forknife , it's where the GUI version is being worked on https://github.com/RubixPower/Linux-Gaming-Setup
-He made all the job on that version, and it's more easy to use, also cleaner code
+GUI version is in the task list [#17](https://github.com/Klairm/Linux-Gaming-Setup/issues/17) but Forknife already made one and can be found [here](https://github.com/RubixPower/Linux-Gaming-Setup)

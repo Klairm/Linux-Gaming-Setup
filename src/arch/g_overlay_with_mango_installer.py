@@ -12,9 +12,10 @@ class GOverlayWithMangoInstaller:
         print(colored.green("Updating packages"))
         os.system("sudo pacman -Sy")
         print(colored.green("Enabling multilib"))
-        os.system("sudo python3 src/enableMultilib.py program")
+        os.system("sudo python3 src/arch/enableMultilib.py program")
 
-        print(colored.green("Installing GOverlay,and MangoHUD"))  # FIXME: vkBasalt required?
+        # FIXME: vkBasalt required?
+        print(colored.green("Installing GOverlay,and MangoHUD"))
 
         # GOverlay and yay installation
         if os.WEXITSTATUS(os.system("yay goverlay")) == 127:
@@ -28,7 +29,8 @@ class GOverlayWithMangoInstaller:
 
                     if git == "y" or git == "Y":
                         self.factory.git_installer().install()
-                        os.system("git clone https://aur.archlinux.org/yay.git")
+                        os.system(
+                            "git clone https://aur.archlinux.org/yay.git")
                     elif git == "N" or git == "n":
                         sys.exit("cancelled installation")
                     else:
@@ -42,5 +44,6 @@ class GOverlayWithMangoInstaller:
             else:
                 print("Wrong option!")
 
-        os.system("sudo pacman -S mesa-demos lib32-mesa-demos vulkan-tools --needed")
+        os.system(
+            "sudo pacman -S mesa-demos lib32-mesa-demos vulkan-tools --needed")
         os.system("yay mangohud")
