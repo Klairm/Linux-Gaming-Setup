@@ -12,7 +12,7 @@ class GOverlayWithMangoInstaller:
         print(colored.green("Updating packages"))
         os.system("sudo pacman -Sy")
         print(colored.green("Enabling multilib"))
-        os.system("sudo python3 src/arch/enableMultilib.py program")
+        os.system("sudo python3 src/enableMultilib.py  program")
 
         # FIXME: vkBasalt required?
         print(colored.green("Installing GOverlay,and MangoHUD"))
