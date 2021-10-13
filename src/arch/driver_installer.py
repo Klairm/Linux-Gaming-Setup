@@ -1,5 +1,6 @@
 from clint.textui import colored
 import os
+import sys
 
 
 class DriverInstaller:
@@ -10,7 +11,9 @@ class DriverInstaller:
 
             '''))
 
-        op = input("Do you want to continue? [Y/N] -> ")
+        op = input("Do you want to continue? [Y/N] -----> ")
 
-        if op == 'Y' or op == 'y':
+        if op in ['Y', 'y']:
             os.system("sudo python3 src/enableMultilib.py  drivers")
+        elif op in ['n', 'N']:
+            return
