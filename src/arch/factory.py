@@ -7,6 +7,8 @@ from src.program_installer import ProgramInstaller
 from src.utils.proton_ge_installer import ProtonGeInstaller
 from src.arch.steam_installer import SteamInstaller
 from src.arch.wine_installer import WineInstaller
+from src.arch.yay_installer import YayInstaller
+from src.arch.heroic_games_installer import HeroicGamesInstaller
 
 
 class Factory:
@@ -36,3 +38,9 @@ class Factory:
 
     def wine_installer(self):
         return WineInstaller()
+
+    def yay_installer(self):
+        return YayInstaller(self)
+
+    def heroic_games_installer(self):
+        return HeroicGamesInstaller(self)

@@ -8,8 +8,8 @@ class ProgramInstaller:
     def install(self):
         while True:
             print(colored.green(
-                "\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Back"))
-            program = int(input("Select an option hoe -> "))
+                "\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Heroic Games Launcher\n[8] Back"))
+            program = int(input("Select an option -> "))
             if program == 1:
                 self.factory.wine_installer().install()
             elif program == 2:
@@ -23,6 +23,8 @@ class ProgramInstaller:
             elif program == 6:
                 self.factory.proton_ge_installer().install()
             elif program == 7:
+                self.factory.heroic_games_installer().install()
+            elif program == 8:
                 break
 
             else:
