@@ -29,7 +29,7 @@ def pacman_conf(situation):
                 print(('''
 					Seems like multilib it's already uncommented, to be sure you can check it on /etc/pacman.conf
 					You can check this site for know more about enabling multilib:
-					 https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html'''))
+					 https://wiki.archlinux.org/title/Official_repositories#Enabling_multilib'''))
                 if situation == "drivers":
                     drv.brandSelArch()
                 break
