@@ -14,9 +14,9 @@ def dis_elec(situation, sys_distro):
         if sys_distro == 0:
             print("Couldn't detect your distro please select one below: ")
             print(colored.green("\n[1] Ubuntu / Linux Mint / Any Ubuntu-based sys_distro\n[2] Arch / Manjaro / Any arch "
-                                "derivatives\n[3] Debian / Antix / Any full Debian-based sys_distro\n[4] Go back"))
+                                "derivatives\n[3] Debian / Antix / Any full Debian-based\n[4] Go back"))
 
-            sys_distro = int(input("Select an option bitch -> "))
+            sys_distro = int(input("Select an option --> "))
 
         factory = None
 
