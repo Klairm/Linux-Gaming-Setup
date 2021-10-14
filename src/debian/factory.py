@@ -8,6 +8,7 @@ from src.program_installer import ProgramInstaller
 from src.utils.proton_ge_installer import ProtonGeInstaller
 from src.debian.steam_installer import SteamInstaller
 from src.debian.wine_installer import WineInstaller
+from src.debian.heroic_games_installer import HeroicGamesInstaller
 
 
 class Factory:
@@ -40,3 +41,6 @@ class Factory:
 
     def wine_installer(self):
         return WineInstaller(apt=self.apt)
+
+    def heroic_games_installer(self):
+        return HeroicGamesInstaller()
