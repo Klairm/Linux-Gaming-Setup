@@ -15,6 +15,7 @@ You can install this programs:
 | [MangoHUD](https://github.com/flightlessmango/MangoHud) | A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU loads and more |
 | [Feral Gamemode](https://github.com/FeralInteractive/gamemode) | A daemon/lib combo for Linux that allows games to request a set of optimisations be temporarily applied to the host OS and/or a game process |
 | [ProtonGE](https://github.com/GloriousEggroll/proton-ge-custom/) | A custom build from Proton with some fixes for games. |
+| [Heroic Games Launcher](https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher) | A Native GUI Epic Games Launcher for Linux, Windows and Mac. |
 
 More will be added in a future
 
