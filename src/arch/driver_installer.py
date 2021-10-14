@@ -11,7 +11,7 @@ class DriverInstaller:
 
             '''))
 
-        op = input("Do you want to continue? [Y/N] -----> ")
+        op = input("Do you want to continue? [Y/N] --> ")
 
         if op in ['Y', 'y']:
             os.system("sudo python3 src/enableMultilib.py  drivers")
