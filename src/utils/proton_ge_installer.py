@@ -7,6 +7,9 @@ from src.utils.helpers import download_tarball
 CONFIRM = ["y", "Y"]
 DENY = ["n", "N"]
 
+RED = colored.red
+GREEN = colored.green
+
 
 class ProtonGeInstaller:
     def __init__(self, factory):
@@ -28,36 +31,36 @@ class ProtonGeInstaller:
                     "It is needed to open Steam one time for create the folders, opening steam...")
                 os.system("steam")
             elif op in DENY:
-                print(colored.red("Installation cancelled"))
+                print(RED("Installation cancelled"))
             else:
                 print("Wrong option!")
         elif os.path.exists("{}.steam/root/".format(home.strip("\n"))):
-            print(colored.green("Detected steam installation folder on ~/.steam/"))
+            print(GREEN("Detected steam installation folder on ~/.steam/"))
             steam_folder = "{}.steam/root/compatibilitytools.d/".format(
                 home.strip("\n"))
 
             if os.path.exists(steam_folder):
-                print(colored.green(
+                print(GREEN(
                     "compatibilitytools.d folder detected under ~/.steam/root/"))
             else:
                 if os.WEXITSTATUS(os.system("mkdir ~/.steam/root/compatibilitytools.d/")) == 126:
-                    print(colored.red(
+                    print(RED(
                         "Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
                     os.system("sudo mkdir ~/.steam/root/compatibilitytools.d/")
 
             compat_folder = steam_folder
         elif os.path.exists("{}.var/app/com.valvesoftware.Steam/".format(home.strip("\n"))):
-            print(colored.green(
+            print(GREEN(
                 "Detected flatpak steam installation folder on ~/.var/app/com.valvesoftware.Steam/"))
             flatpak_steam_folder = "{}.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/".format(
                 home.strip("\n"))
 
             if os.path.exists(flatpak_steam_folder):
-                print(colored.green(
+                print(GREEN(
                     "compatibilitytools.d folder detected under ~/.var/app/com.valvesoftware.Steam/data/Steam/"))
             else:
                 if os.WEXITSTATUS(os.system("mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")) == 126:
-                    print(colored.red(
+                    print(RED(
                         "Cannot create the folder ~/.steam/root/compatibilitytools.d/, trying with sudo permissions..."))
                     os.system(
                         "sudo mkdir ~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/")
@@ -65,27 +68,27 @@ class ProtonGeInstaller:
             compat_folder = flatpak_steam_folder
 
         if compat_folder is None:
-            sys.exit(colored.red("Unable to find Steam folder."))
+            sys.exit(RED("Unable to find Steam folder."))
 
         os.chdir(compat_folder)
         proton_ge_tarball = download_tarball(
             "GloriousEggroll", "proton-ge-custom")
         proton_ge_tarball = proton_ge_tarball.split()[0].strip('""')
         if os.WEXITSTATUS(os.system("tar -xf {}".format(proton_ge_tarball))) != 0:
-            sys.exit(colored.red("Cannot extract the tarball"))
+            sys.exit(RED("Cannot extract the tarball"))
         else:
-            print(colored.green(
+            print(GREEN(
                 "Tarball extracted succesfully, ProtonGE is now installed, for enable it on Steam, see: https://github.com/GloriousEggroll/proton-ge-custom/#enabling"))
-            print(colored.green("Cleaning the tar file..."))
+            print(GREEN("Cleaning the tar file..."))
 
             if os.WEXITSTATUS(os.system("rm {}".format(proton_ge_tarball))) != 0:
-                print(colored.red(
+                print(RED(
                     "Cannot clean the tar file, checking the correct directory"))
 
                 if os.getcwd() + "/" != compat_folder:
                     os.chdir(compat_folder)
 
-                print(colored.red(
+                print(RED(
                     "Cannot clean the tar file, trying with sudo permissions..."))
 
                 if os.WEXITSTATUS(os.system("sudo rm {}".format(proton_ge_tarball))) != 0:

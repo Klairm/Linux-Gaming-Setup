@@ -1,5 +1,8 @@
 from clint.textui import colored
 
+RED = colored.red
+GREEN = colored.green
+
 
 class ProgramInstaller:
     def __init__(self, factory):
@@ -7,8 +10,8 @@ class ProgramInstaller:
 
     def install(self):
         while True:
-            print(colored.green(
-                "\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Heroic Games Launcher\n[8] Back"))
+            print(GREEN(
+                "\n[1] WINE (Essential)\n[2] Lutris\n[3] GOverlay with MangoHUD\n[4] Steam\n[5] Feral GameMode\n[6] Proton GE\n[7] Lutris GE\n[8] Heroic Games Launcher\n[0] Back"))
             program = int(input("Select an option -> "))
             if program == 1:
                 self.factory.wine_installer().install()
@@ -23,9 +26,12 @@ class ProgramInstaller:
             elif program == 6:
                 self.factory.proton_ge_installer().install()
             elif program == 7:
-                self.factory.heroic_games_installer().install()
+                self.factory.lutris_ge_installer().install()
+
             elif program == 8:
+                self.factory.heroic_games_installer().install()
+            elif program == 0:
                 break
 
             else:
-                print("Wrong option!")
+                print(RED("Wrong option!"))

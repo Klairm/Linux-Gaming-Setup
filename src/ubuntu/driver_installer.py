@@ -1,5 +1,7 @@
 from clint.textui import colored
 import distro
+RED = colored.red
+GREEN = colored.green
 
 
 class DriverInstaller:
@@ -8,12 +10,13 @@ class DriverInstaller:
 
     def install(self):
         while True:
-            print(colored.red("WARNING: Choose your correct brand of your graphics card"))
-            print(colored.green("\n[1] NVIDIA\n[2] AMD/INTEL\n[3] Back\n"))
+            print(RED(
+                "WARNING: Choose your correct brand of your graphics card"))
+            print(GREEN("\n[1] NVIDIA\n[2] AMD/INTEL\n[3] Back\n"))
             brand = int(input("Select an option -> "))
 
             if brand == 1:
-                print(colored.red('''
+                print(RED('''
                 WARNING: Make sure that your graphics card is compatible with the driver and is Vulkan capable, before installing: 
 
                 Graphics card compatibility -> https://www.nvidia.com/Download/driverResults.aspx/157462/en-us
@@ -22,12 +25,14 @@ class DriverInstaller:
                 op = input("Do you want to continue? [Y/N] ->  ")
 
                 if op == 'Y' or op == 'y':
-                    print(colored.red("Adding drivers repository and enabling 32 bits arch "))
+                    print(RED(
+                        "Adding drivers repository and enabling 32 bits arch "))
                     self.apt.add_architecture("i386")
                     self.apt.add_repository("ppa:graphics-drivers/ppa")
 
-                    print(colored.green("Installing the 440 driver"))
-                    self.apt.install(["nvidia-driver-440", "libnvidia-gl-440", "libnvidia-gl-440:i386"])
+                    print(GREEN("Installing the 440 driver"))
+                    self.apt.install(
+                        ["nvidia-driver-440", "libnvidia-gl-440", "libnvidia-gl-440:i386"])
 
                     print("Reboot to apply changes")
                 elif op == 'N' or op == 'n':
@@ -36,7 +41,7 @@ class DriverInstaller:
                     print("Wrong option, select Y or N")
 
             elif brand == 2:
-                print(colored.red('''
+                print(RED('''
                     Note: Only Ubuntu 18.04 and higher is supported for AMD and Intel graphics.
             
                     Note for Intel integrated graphics users: Only Skylake, Kaby Lake, and Coffee Lake offer full Vulkan support. 
@@ -52,30 +57,33 @@ class DriverInstaller:
                     ver = distro.linux_distribution()[1]
 
                     if float(ver) >= 19.10:
-                        print(colored.green(
+                        print(GREEN(
                             f"Detected {ver[0]} {ver[1]}, installing support for 32 bit and vulkan support"))
                         self.apt.add_architecture("i386")
-                        self.apt.install(["libgl1-mesa-dri:i386", "mesa-vulkan-drivers", "mesa-vulkan-drivers:i386"])
+                        self.apt.install(
+                            ["libgl1-mesa-dri:i386", "mesa-vulkan-drivers", "mesa-vulkan-drivers:i386"])
 
                         print("Reboot to apply changes")
                     elif float(ver) == 18.04 or float(ver) == 18.10:
-                        print(colored.green(
+                        print(GREEN(
                             f"Detected {ver[0]} {ver[1]}, adding mesa repository, installing support for 32 bit and vulkan support"))
                         self.apt.add_architecture("i386")
                         self.apt.add_repository("ppa:kisak/kisak-mesa")
                         self.apt.upgrade()
-                        self.apt.install(["libgl1-mesa-glx:i386", "libgl1-mesa-dri:i386", "mesa-vulkan-drivers", "mesa-vulkan-drivers:i386"])
+                        self.apt.install(["libgl1-mesa-glx:i386", "libgl1-mesa-dri:i386",
+                                         "mesa-vulkan-drivers", "mesa-vulkan-drivers:i386"])
 
                         print("Reboot to apply changes")
                     elif float(ver) < 18.04:
-                        print(colored.red("Only Ubuntu 18.04 and higher is supported for AMD and Intel graphics."))
+                        print(RED(
+                            "Only Ubuntu 18.04 and higher is supported for AMD and Intel graphics."))
                         break
                     else:
-                        print("Something went wrong")  # FIXME: Add error handler
+                        # FIXME: Add error handler
+                        print("Something went wrong")
 
             elif brand == 3:
                 break
 
             else:
                 print("Wrong option, you must choose one number")
-

@@ -6,6 +6,8 @@ from src.utils.helpers import download_tarball
 import distro
 CONFIRM = ["y", "Y"]
 DENY = ["n", "N"]
+RED = colored.red
+GREEN = colored.green
 
 
 class GOverlayWithMangoInstaller:
@@ -51,21 +53,21 @@ class GOverlayWithMangoInstaller:
                     os.system("./mangohud-setup.sh install")
 
                 if os.path.isfile("/usr/bin/mangohud"):
-                    print(colored.green("MangoHUD installed succesfully"))
+                    print(GREEN("MangoHUD installed succesfully"))
 
         else:
-            print(colored.red("Something went wrong locating MangoHUD"))
+            print(RED("Something went wrong locating MangoHUD"))
 
     def install_g_overlay(self):
         if os.path.isfile("/usr/bin/goverlay"):
-            print(colored.green("GOverlay already installed, updating GOverlay..."))
+            print(GREEN("GOverlay already installed, updating GOverlay..."))
             os.remove("/usr/bin/goverlay")
 
             if os.path.exists("./GOverlay"):
                 os.system("rm -rf ./GOverlay")
                 os.mkdir("GOverlay")
         else:
-            print(colored.green("Installing GOverlay..."))
+            print(GREEN("Installing GOverlay..."))
             os.system("mkdir GOverlay")
 
         os.chdir("./GOverlay")
@@ -85,9 +87,9 @@ class GOverlayWithMangoInstaller:
                     os.system("sudo mv goverlay /usr/bin/")
 
                 if os.path.isfile("/usr/bin/goverlay"):
-                    print(colored.green("GOverlay installed succesfully"))
+                    print(GREEN("GOverlay installed succesfully"))
                 else:
                     print(
                         "goverlay cannot be moved on /usr/bin/, you still can execute it from the current directory")
         else:
-            print(colored.red("Something went wrong locating GOverlay"))
+            print(RED("Something went wrong locating GOverlay"))

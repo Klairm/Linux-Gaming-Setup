@@ -2,10 +2,12 @@ from clint.textui import colored
 import os
 import sys
 
+RED = colored.red
+
 
 class DriverInstaller:
     def install(self):
-        print(colored.red('''
+        print(RED('''
             The script will edit the /etc/pacman.conf file, for enable multilib, you can know more about multlib here:
             https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Multilib.html
 

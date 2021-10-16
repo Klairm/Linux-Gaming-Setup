@@ -1,6 +1,9 @@
 import subprocess
 from clint.textui import colored
 
+RED = colored.red
+GREEN = colored.green
+
 
 class HeroicGamesInstaller:
     def install(self):
@@ -10,6 +13,6 @@ class HeroicGamesInstaller:
             p = subprocess.call(
                 ['/bin/bash', '-c', 'bash <(wget -O- https://raw.githubusercontent.com/Heroic-Games-Launcher/HeroicGamesLauncher/main/madrepo.sh)'])
             if p == 0:
-                print(colored.green("Installed Heroic Games Launcher succesfully."))
+                print(GREEN("Installed Heroic Games Launcher succesfully."))
         except subprocess.CalledProcessError:
-            print(colored.red("ERROR: Something went wrong."))
+            print(RED("ERROR: Something went wrong."))

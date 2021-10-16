@@ -7,10 +7,14 @@ from pyfiglet import Figlet
 from clint.textui import colored
 from src import options as opt
 
+
+RED = colored.red
+GREEN = colored.green
+YELLOW = colored.yellow
 distros = ["ubuntu", "debian", "linuxmint", "arch", "endeavouros"]
 figlet = Figlet(font='speed')
 
-print(colored.yellow(figlet.renderText('''GAME SETUP''')))
+print(YELLOW(figlet.renderText('''GAME SETUP''')))
 
 while True:
     try:
@@ -21,7 +25,7 @@ while True:
         print("Detecting your distro...")
     # FIXME: Too many if-else..
         if distro.id() in distros or distro.like() in distros:
-            print(colored.green(
+            print(GREEN(
                 f"[{distro.id()}] distro detected... based on {distro.like()}"))
             if distro.id() == "ubuntu" or distro.like() == "ubuntu":
                 sys_distro = 1
@@ -32,7 +36,7 @@ while True:
         else:
             sys_distro = 0
 
-        print(colored.green(
+        print(GREEN(
             "[1] Drivers and DXVK installation\n[2] Useful tools and programs\n[3] Exit"))
         op = int(input("Select an option -> "))
 
@@ -46,4 +50,4 @@ while True:
             print("Wrong option!")
 
     except ValueError:
-        print(colored.red("Invalid entered value"))
+        print(RED("Invalid entered value"))
