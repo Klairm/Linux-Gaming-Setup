@@ -5,6 +5,7 @@ from src.arch.git_installer import GitInstaller
 from src.arch.lutris_installer import LutrisInstaller
 from src.program_installer import ProgramInstaller
 from src.utils.proton_ge_installer import ProtonGeInstaller
+from src.utils.lutris_ge_installer import LutrisGeInstaller
 from src.arch.steam_installer import SteamInstaller
 from src.arch.wine_installer import WineInstaller
 from src.arch.yay_installer import YayInstaller
@@ -32,6 +33,9 @@ class Factory:
 
     def proton_ge_installer(self):
         return ProtonGeInstaller(self)
+
+    def lutris_ge_installer(self):
+        return LutrisGeInstaller()
 
     def steam_installer(self):
         return SteamInstaller()
