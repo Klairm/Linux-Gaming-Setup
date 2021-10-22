@@ -6,8 +6,10 @@ from src.debian.git_installer import GitInstaller
 from src.debian.lutris_installer import LutrisInstaller
 from src.program_installer import ProgramInstaller
 from src.utils.proton_ge_installer import ProtonGeInstaller
+from src.utils.lutris_ge_installer import LutrisGeInstaller
 from src.debian.steam_installer import SteamInstaller
 from src.debian.wine_installer import WineInstaller
+from src.debian.heroic_games_installer import HeroicGamesInstaller
 
 
 class Factory:
@@ -35,8 +37,14 @@ class Factory:
     def proton_ge_installer(self):
         return ProtonGeInstaller(factory=self)
 
+    def lutris_ge_installer(self):
+        return LutrisGeInstaller()
+
     def steam_installer(self):
         return SteamInstaller(apt=self.apt)
 
     def wine_installer(self):
         return WineInstaller(apt=self.apt)
+
+    def heroic_games_installer(self):
+        return HeroicGamesInstaller()

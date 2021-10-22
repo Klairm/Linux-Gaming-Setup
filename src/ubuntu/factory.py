@@ -6,8 +6,10 @@ from src.ubuntu.git_installer import GitInstaller
 from src.ubuntu.lutris_installer import LutrisInstaller
 from src.program_installer import ProgramInstaller
 from src.utils.proton_ge_installer import ProtonGeInstaller
+from src.utils.lutris_ge_installer import LutrisGeInstaller
 from src.ubuntu.steam_installer import SteamInstaller
 from src.ubuntu.wine_installer import WineInstaller
+from src.ubuntu.heroic_games_installer import HeroicGamesInstaller
 
 
 class Factory:
@@ -35,8 +37,14 @@ class Factory:
     def proton_ge_installer(self):
         return ProtonGeInstaller(self)
 
+    def lutris_ge_installer(self):
+        return LutrisGeInstaller()
+
     def steam_installer(self):
         return SteamInstaller(apt=self.apt)
 
     def wine_installer(self):
         return WineInstaller(apt=self.apt)
+
+    def heroic_games_installer(self):
+        return HeroicGamesInstaller()

@@ -3,6 +3,8 @@ import sys
 
 from clint.textui import colored
 
+RED = colored.red
+
 
 class FeralGameModeInstaller:
     def __init__(self, factory):
@@ -16,7 +18,7 @@ class FeralGameModeInstaller:
             os.chdir("./Gamemode")
 
         if os.WEXITSTATUS(os.system("git clone https://github.com/FeralInteractive/gamemode.git")) == 127:
-            git = input(print(colored.red(
+            git = input(print(RED(
                 "Cannot find Git, Git is needed for install some programs, proceed to install Git? [Y/N]")))
             if git == "y" or git == "Y":
                 self.factory.git_installer().install()

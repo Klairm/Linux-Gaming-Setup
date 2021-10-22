@@ -6,6 +6,6 @@ class LutrisInstaller:
         self.apt = apt
 
     def install(self):
-        print(colored.green("Adding lutris repository"))
+        print(GREEN("Adding lutris repository"))
         self.apt.add_repository("ppa:lutris-team/lutris")
         self.apt.install(["lutris"])
