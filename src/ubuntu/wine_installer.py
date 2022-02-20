@@ -3,6 +3,7 @@ import distro
 
 from clint.textui import colored
 
+GREEN = colored.green
 
 class WineInstaller:
     def __init__(self, apt):

@@ -1,5 +1,5 @@
 from clint.textui import colored
-
+GREEN = colored.green 
 
 class LutrisInstaller:
     def __init__(self, apt):

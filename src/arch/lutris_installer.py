@@ -2,6 +2,7 @@ import os
 
 from clint.textui import colored
 
+GREEN = colored.green
 
 class LutrisInstaller:
     def install(self):
