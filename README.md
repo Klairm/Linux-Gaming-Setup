@@ -31,4 +31,4 @@ More will be added in a future
 
 ### GUI Version
 
-GUI version is in the task list [#17](https://github.com/Klairm/Linux-Gaming-Setup/issues/17) but Forknife already made one and can be found [here](https://github.com/RubixPower/Linux-Gaming-Setup)
+GUI version is in the task list [#17](https://github.com/Klairm/Linux-Gaming-Setup/issues/17) 
