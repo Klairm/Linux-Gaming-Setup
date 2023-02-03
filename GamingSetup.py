@@ -27,7 +27,7 @@ while True:
         if distro.id() in distros or distro.like() in distros:
             print(GREEN(
                 f"[{distro.id()}] distro detected... based on {distro.like()}"))
-            if distro.id() == "ubuntu" or distro.like() == "ubuntu":
+            if distro.id() == "ubuntu" or distro.like() == "ubuntu" or distro.id() == "linuxmint": # temporary fix #25
                 sys_distro = 1
             elif distro.id() == "arch" or distro.like() == "arch":
                 sys_distro = 2
